@@ -1,4 +1,4 @@
-import { updateRule } from '@/services/ant-design-pro/api';
+import { updateRule } from '@/services/ant-design-pro/rule';
 import {
   ProFormDateTimePicker,
   ProFormRadio,

@@ -110,6 +110,7 @@ export default [
         path: '/list/search',
         name: 'search-list',
         component: './list/search',
+        hideInMenu:true,
         routes: [
           {
             path: '/list/search',

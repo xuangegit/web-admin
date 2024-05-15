@@ -127,6 +127,7 @@ const Workplace: FC = () => {
 
   return (
     <PageContainer
+      fixedHeader
       content={
         <PageHeaderContent
           currentUser={{
