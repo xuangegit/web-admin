@@ -1,65 +1,30 @@
-import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
+import HeaderDropdown from '@/components/HeaderDropdown';
+import {
+  AccountBookOutlined,
+  EditOutlined,
+  ExportOutlined,
+  MessageOutlined,
+  PropertySafetyOutlined,
+} from '@ant-design/icons';
+import type { ActionType, ProDescriptionsItemProps } from '@ant-design/pro-components';
 import {
   FooterToolbar,
-  ModalForm,
   PageContainer,
   ProDescriptions,
-  ProFormText,
-  ProFormTextArea,
   ProTable,
-  ProCard
 } from '@ant-design/pro-components';
-import { Button, Drawer, Input, message ,Tabs} from 'antd';
+import { Button, Drawer, message, Tooltip } from 'antd';
 import React, { useRef, useState } from 'react';
-import type { FormValueType } from './components/UpdateForm';
-import UpdateForm from './components/UpdateForm';
-import type { TableListItem, TableListPagination } from './data';
-import { addRule, removeRule, rule, updateRule } from './service';
-import {columns as columns1} from './config'
-/**
- * 添加节点
- *
- * @param fields
- */
+import { getColumns } from './config';
+import type { CardListItem, TableListItem } from './data';
+import { removeRule, rule } from './service';
 
-const handleAdd = async (fields: TableListItem) => {
-  const hide = message.loading('正在添加');
-
-  try {
-    await addRule({ ...fields });
-    hide();
-    message.success('添加成功');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('添加失败请重试！');
-    return false;
-  }
-};
 /**
  * 更新节点
  *
  * @param fields
  */
 
-const handleUpdate = async (fields: FormValueType, currentRow?: TableListItem) => {
-  const hide = message.loading('正在配置');
-
-  try {
-    await updateRule({
-      ...currentRow,
-      ...fields,
-    });
-    hide();
-    message.success('配置成功');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('配置失败请重试！');
-    return false;
-  }
-};
 /**
  * 删除节点
  *
@@ -90,12 +55,11 @@ const CardPage: React.FC = () => {
   const [currentRow, setCurrentRow] = useState<TableListItem>();
   const [selectedRowsState, setSelectedRows] = useState<TableListItem[]>([]);
 
-  const [activeKey,setActiveKey] = useState('1');
+  const [activeKey, setActiveKey] = useState('1');
   const items = [
     {
       key: '1',
       label: '中国移动',
-     
     },
     {
       key: '2',
@@ -104,147 +68,89 @@ const CardPage: React.FC = () => {
     {
       key: '3',
       label: '中国电信',
-    
-    },
-  ]
-  /** 国际化配置 */
-
-  const columns: ProColumns<TableListItem>[] = [
-    {
-      title: '规则名称',
-      dataIndex: 'name',
-      key: 'name',
-      tip: '规则名称是唯一的 key',
-      render: (dom, entity) => {
-        return (
-          <a
-            onClick={() => {
-              setCurrentRow(entity);
-              setShowDetail(true);
-            }}
-          >
-            {dom}
-          </a>
-        );
-      },
-    },
-    {
-      title: '描述',
-      dataIndex: 'desc',
-      key:'desc',
-      valueType: 'textarea',
-    },
-    {
-      title: '服务调用次数',
-      dataIndex: 'callNo',
-      sorter: true,
-      hideInForm: true,
-      renderText: (val: string) => `${val}万`,
-    },
-    {
-      title: '状态',
-      dataIndex: 'status',
-      hideInForm: true,
-      valueEnum: {
-        0: {
-          text: '关闭',
-          status: 'Default',
-        },
-        1: {
-          text: '运行中',
-          status: 'Processing',
-        },
-        2: {
-          text: '已上线',
-          status: 'Success',
-        },
-        3: {
-          text: '异常',
-          status: 'Error',
-        },
-      },
-    },
-    {
-      title: '上次调度时间',
-      sorter: true,
-      dataIndex: 'updatedAt',
-      valueType: 'dateTime',
-      renderFormItem: (item, { defaultRender, ...rest }, form) => {
-        const status = form.getFieldValue('status');
-
-        if (`${status}` === '0') {
-          return false;
-        }
-
-        if (`${status}` === '3') {
-          return <Input {...rest} placeholder="请输入异常原因！" />;
-        }
-
-        return defaultRender(item);
-      },
-    },
-    {
-      title: '操作',
-      dataIndex: 'option',
-      valueType: 'option',
-      render: (_, record) => [
-       
-        <a key="subscribeAlert" href="https://procomponents.ant.design/">
-          订阅警报
-        </a>,
-      ],
     },
   ];
+  /** 国际化配置 */
 
   return (
-    <PageContainer>
-      <>
-      <Tabs activeKey={activeKey} centered items={items} onChange={(key)=>{setActiveKey(key)}} size='large'/>
-      <ProTable       
+    <PageContainer
+      ghost
+      tabList={items}
+      tabActiveKey={activeKey}
+      onTabChange={(key) => setActiveKey(key)}
+      fixedHeader
+    >
+      <ProTable
         actionRef={actionRef}
         rowKey="key"
         search={{
           labelWidth: 'auto',
-          filterType: 'light',
+          // filterType: 'light',
+        }}
+        dateFormatter="string"
+        options={{
+          density: false,
+          fullScreen: false,
+          setting: false,
+          reload: false,
         }}
         toolBarRender={() => [
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-             
-            }}
-          >
-            <PlusOutlined /> 新建
+          <Button type="primary" key="going" icon={<AccountBookOutlined />} onClick={() => {}}>
+            续费
           </Button>,
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-            
-            }}
-          >
-           续费
+          <Button key="auto" icon={<PropertySafetyOutlined />} onClick={() => {}}>
+            自动续费
           </Button>,
-          <Button
-            type="primary"
-            key="primary"
-            onClick={() => {
-            
-            }}
-          >
-          批量备注
+          <Tooltip title="发送短信" key="sms">
+            <Button
+              type="primary"
+              key="primary"
+              shape="circle"
+              icon={<MessageOutlined />}
+              onClick={() => {}}
+            />
+          </Tooltip>,
+
+          <Button key="remark" icon={<EditOutlined />} onClick={() => {}}>
+            批量备注
           </Button>,
+          <Button danger key="stop" onClick={() => {}}>
+            停机保号
+          </Button>,
+          <Tooltip title="批量导出" key="export">
+            <HeaderDropdown
+              menu={{
+                selectedKeys: [],
+                onClick: (event:any)=>{
+                  const {key} = event
+                  console.log('key',key)
+
+                },
+                items: [
+                  {
+                    key: '1',
+                    label: '导出当月',
+                  },
+                  {
+                    key: '2',
+                    label: '导出历史',
+                  }
+                ],
+              }}
+            >
+              <Button shape="circle" icon={<ExportOutlined />} onClick={() => {}} />
+            </HeaderDropdown>
+          </Tooltip>,
         ]}
-        params={{type:activeKey}}
+        params={{ type: activeKey }}
         request={rule}
         scroll={{
           x: 1000,
         }}
-        columns={columns1}
+        columns={getColumns({ setCurrentRow, setShowDetail })}
         rowSelection={{
           onChange: (_, selectedRows) => {
-            setSelectedRows(selectedRows);
+            setSelectedRows(selectedRows as TableListItem[]);
           },
         }}
       />
@@ -261,9 +167,6 @@ const CardPage: React.FC = () => {
                 {selectedRowsState.length}
               </a>{' '}
               项 &nbsp;&nbsp;
-              <span>
-                服务调用次数总计 {selectedRowsState.reduce((pre, item) => pre + item.callNo!, 0)} 万
-              </span>
             </div>
           }
         >
@@ -279,8 +182,6 @@ const CardPage: React.FC = () => {
           <Button type="primary">批量审批</Button>
         </FooterToolbar>
       )}
-      
-      
 
       <Drawer
         width={600}
@@ -292,24 +193,26 @@ const CardPage: React.FC = () => {
         closable={false}
       >
         {currentRow?.name && (
-          <ProDescriptions<TableListItem>
+          <ProDescriptions<CardListItem>
             column={2}
-            title={currentRow?.name}
+            title={currentRow?.name || '详情'}
             request={async () => ({
               data: currentRow || {},
             })}
             params={{
               id: currentRow?.name,
             }}
-            columns={columns as ProDescriptionsItemProps<TableListItem>[]}
+            columns={
+              getColumns({
+                setCurrentRow,
+                setShowDetail,
+              }) as ProDescriptionsItemProps<CardListItem>[]
+            }
           />
         )}
       </Drawer>
-      </>
     </PageContainer>
   );
 };
-
-
 
 export default CardPage;
