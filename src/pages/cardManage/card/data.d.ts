@@ -27,7 +27,7 @@ export type CardListItem = {
   activationTime?:string;//激活时间
   smsServiceExpires?:string;//短信服务过期时间
   remark?:string; //备注
-};
+}&Partial<TableListItem>;
 export type TableListItem = {
   type?:string;
   key: number;
@@ -42,7 +42,7 @@ export type TableListItem = {
   updatedAt: Date;
   createdAt: Date;
   progress: number;
-} & CardListItem;
+} 
 export type TableListPagination = {
   type?:string;
   total: number;

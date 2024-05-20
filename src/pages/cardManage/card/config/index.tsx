@@ -1,8 +1,8 @@
-import {CardListItem,TableListItem} from '../data';
+import {CardListItem} from '../data';
 import { ProColumnType } from '@ant-design/pro-components';
 import React from 'react';
 type getColumnsType = {
-  setCurrentRow:(p?:TableListItem)=>any;
+  setCurrentRow:(p?:CardListItem)=>any;
   setShowDetail:(p:boolean)=>any;
 }
 export const getColumns = ({setCurrentRow,setShowDetail}:getColumnsType): ProColumnType<CardListItem>[] => {

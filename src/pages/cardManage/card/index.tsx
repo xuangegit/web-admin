@@ -13,48 +13,30 @@ import {
   ProDescriptions,
   ProTable,
 } from '@ant-design/pro-components';
-import { Button, Drawer, message, Tooltip } from 'antd';
+import { Button, Drawer,  Tooltip } from 'antd';
 import React, { useRef, useState } from 'react';
 import { getColumns } from './config';
-import type { CardListItem, TableListItem } from './data';
-import { removeRule, rule } from './service';
-
+import type { CardListItem } from './data';
+import {  rule } from './service';
+import {useCard} from './hooks'
+import SmsModalForm from './components/SmsModalForm'
 /**
  * 更新节点
  *
  * @param fields
  */
-
-/**
- * 删除节点
- *
- * @param selectedRows
- */
-
-const handleRemove = async (selectedRows: TableListItem[]) => {
-  const hide = message.loading('正在删除');
-  if (!selectedRows) return true;
-
-  try {
-    await removeRule({
-      key: selectedRows.map((row) => row.key),
-    });
-    hide();
-    message.success('删除成功，即将刷新');
-    return true;
-  } catch (error) {
-    hide();
-    message.error('删除失败，请重试');
-    return false;
-  }
-};
-
 const CardPage: React.FC = () => {
-  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const {
+      currentRow,
+      setCurrentRow, 
+      smsModalVisible, 
+      setSmsModalVisible,
+      showDetail, 
+      setShowDetail,
+      selectedRowsState,
+      setSelectedRows
+  } = useCard();
   const actionRef = useRef<ActionType>();
-  const [currentRow, setCurrentRow] = useState<TableListItem>();
-  const [selectedRowsState, setSelectedRows] = useState<TableListItem[]>([]);
-
   const [activeKey, setActiveKey] = useState('1');
   const items = [
     {
@@ -107,7 +89,7 @@ const CardPage: React.FC = () => {
               key="primary"
               shape="circle"
               icon={<MessageOutlined />}
-              onClick={() => {}}
+              onClick={() => {setSmsModalVisible(true)}}
             />
           </Tooltip>,
 
@@ -150,7 +132,7 @@ const CardPage: React.FC = () => {
         columns={getColumns({ setCurrentRow, setShowDetail })}
         rowSelection={{
           onChange: (_, selectedRows) => {
-            setSelectedRows(selectedRows as TableListItem[]);
+            setSelectedRows(selectedRows as CardListItem[]);
           },
         }}
       />
@@ -172,8 +154,6 @@ const CardPage: React.FC = () => {
         >
           <Button
             onClick={async () => {
-              await handleRemove(selectedRowsState);
-              setSelectedRows([]);
               actionRef.current?.reloadAndRest?.();
             }}
           >
@@ -211,6 +191,11 @@ const CardPage: React.FC = () => {
           />
         )}
       </Drawer>
+      {smsModalVisible&&<SmsModalForm
+          visible={smsModalVisible}
+          onSubmit={()=>{return Promise.resolve()}}
+          onCancel={()=>{setSmsModalVisible(false)}}
+        />}
     </PageContainer>
   );
 };
