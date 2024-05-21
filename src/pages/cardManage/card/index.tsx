@@ -73,7 +73,7 @@ const CardPage: React.FC = () => {
         options={{
           density: false,
           fullScreen: false,
-          setting: false,
+          setting: true,
           reload: false,
         }}
         toolBarRender={() => [

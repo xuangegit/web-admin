@@ -1,14 +1,13 @@
 import {
   ProFormCheckbox,
   ProFormItem,
-  ProFormSelect,
   ProFormTextArea,
   StepsForm,
 } from '@ant-design/pro-components';
-import { Modal } from 'antd';
-import React from 'react';
+import { Modal ,Alert} from 'antd';
+import React ,{useRef}from 'react';
 import type { TableListItem } from '../data';
-
+import { useNavigate } from '@umijs/max';
 export type FormValueType = {
   target?: string;
   template?: string;
@@ -25,6 +24,8 @@ export type UpdateFormProps = {
 };
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
+  const navigate = useNavigate();
+  const baseRef = useRef<any>();
   return (
     <StepsForm
       stepsProps={
@@ -37,10 +38,10 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           <Modal
             width={700}
             styles={{
-              body:{
+              body: {
                 // padding: '32px 40px 48px',
-                padding:'10px'
-              }
+                padding: '10px',
+              },
             }}
             destroyOnClose
             title="发送短信"
@@ -61,6 +62,21 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           name: props?.values?.baseInfo,
           type: 0,
         }}
+        layout='horizontal'
+        labelCol={
+          {
+            xs: 24,
+            sm: 7,
+            md:4,
+          }
+        }
+        wrapperCol={
+          {
+            xs: 24,
+            sm: 13,
+            md: 20,
+          }
+        }
         title="基本信息"
       >
         {/* <ProFormRadio.Group
@@ -82,81 +98,122 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           label="ICCID"
           tooltip="请输入ICCID,一行一个,可复制excell中iccid列数据"
           placeholder="请输入ICCID,一行一个"
+          fieldProps={{
+            autoSize: { minRows: 3, maxRows: 8 },
+          }}
           rules={[
             {
               required: true,
-              message: '请输入！',
+              message: '请输入ICCID！',
             },
           ]}
         />
       </StepsForm.StepForm>
       <StepsForm.StepForm
         layout="horizontal"
+        name='sms'
+        labelCol={
+          {
+            xs: 24,
+            sm: 7,
+            md:4,
+          }
+        }
+        wrapperCol={
+          {
+            xs: 24,
+            sm: 13,
+            md: 20,
+          }
+        }
+
         initialValues={{
           target: ['0', '1'],
           template: '0',
         }}
         title="短信发送"
       >
-        <ProFormItem label="ICCID" tooltip='这里只显示有效的iccid'>
-          <div style={{
-            border:'1px solid #ccc',
-            padding:'10px 15px',
-            borderRadius:5,
-            maxHeight:150,
-            overflowY:'auto'
-          }}>
+        <ProFormItem label="ICCID" tooltip="这里只显示有效的iccid"  required>
+          <div
+            style={{
+              border: '1px solid #ccc',
+              padding: '10px 15px',
+              borderRadius: 5,
+              maxHeight: 150,
+              overflowY: 'auto',
+            }}
+          >
             <ProFormCheckbox.Group
               name="target"
               // label="监控对象"
-              rules={[{required:true,message:'请选择至少一个iccid'}]}
+              rules={[{ required: true, message: '请选择至少一个iccid' }]}
               options={[
                 {
-                  label: '13131234243234243123111表一',
+                  label: '131312342432342431231115',
                   value: '0',
                 },
                 {
-                  label: '11312312423423423431231表二',
+                  label: '11312312423423423431231',
                   value: '1',
                 },
                 {
-                  label: '1132131224234242424211312表2',
+                  label: '113213122423424242421131',
                   value: '2',
                 },
                 {
-                  label: '11312314242342342424231312表3',
+                  label: '113123142423423424242313',
                   value: '3',
                 },
                 {
-                  label: '11342344234234234234412313表4',
+                  label: '113423442342342342344123',
                   value: '4',
                 },
                 {
-                  label: '1111242424234234242312313表5',
+                  label: '111124242423423424231231',
                   value: '5',
                 },
                 {
-                  label: '11342344234234234234412313表4',
+                  label: '113423442342342342344123',
                   value: '6',
                 },
                 {
-                  label: '1111242424234234242312313表5',
+                  label: '111124242423423424231231',
                   value: '7',
                 },
                 {
-                  label: '11342344234234234234412313表4',
+                  label: '113423442342342342344123',
                   value: '8',
                 },
                 {
-                  label: '1111242424234234242312313表5',
+                  label: '111124242423423424231231',
                   value: '9',
                 },
               ]}
             />
           </div>
+          <Alert message='当前有效号码8个'></Alert>
         </ProFormItem>
-        <ProFormTextArea name="smsContent" label="短信内容" />
-        <ProFormSelect
+        
+        <ProFormItem  label="短信内容" required>
+          <ProFormTextArea
+            name="smsContent"
+            rules={[{required: true, message: '请输入短信内容'}]}
+            placeholder='每64个字增加一条短信计数，内容长度不能超过160'
+            fieldProps={{
+              count: {
+                max:160,
+                // show:true,
+                show:({count,maxLength}: { value: string; count: number; maxLength?: number })=>{
+                  return <div style={{fontWeight:'bold'}}>
+                    {`${count}/${maxLength}，${Math.ceil(count/64)}条`}
+                  </div>
+                }
+              },
+            }}
+          />
+          <Alert type='warning'  message='中国移动物联网卡在短信内容有中文时发送前会带有如【xxxxxxxx】的签名字样。'></Alert>
+        </ProFormItem>
+        {/* <ProFormSelect
           name="template"
           width="md"
           label="规则模板"
@@ -164,7 +221,14 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             0: '规则模板一',
             1: '规则模板二',
           }}
-        />
+        /> */}
+        <ProFormItem label='应付金额'>
+          <span style={{color:'red',fontWeight:'bold'}}>￥140.00</span>
+        </ProFormItem>
+        <ProFormItem label='账户余额'>
+          <span style={{color:'#1890ff',fontWeight:'bold',marginRight:8}}>￥80</span> 
+          <span>余额不足！<a onClick={()=>navigate('/recharge')}>去充值</a></span>
+        </ProFormItem>
       </StepsForm.StepForm>
     </StepsForm>
   );
