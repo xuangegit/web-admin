@@ -62,6 +62,36 @@ export default [
     ],
   },
   {
+    path: '/renewal',
+    icon: 'smile',
+    name: 'renewal',
+    routes: [
+      {
+        path: '/renewal',
+        redirect: '/renewal/service',
+      },
+      {
+        name: 'service',
+        icon: 'smile',
+        path: 'service',
+        component: '@/pages/cardManage/card',
+      },
+      {
+        name: 'automatic',
+        icon: 'smile',
+        path: 'automatic',
+        component: '@/pages/cardManage/card',
+      },
+      {
+        name: 'list',
+        icon: 'smile',
+        path: 'list',
+        component: '@/pages/cardManage/card',
+      },
+      
+    ],
+  },
+  {
     path: '/dashboard',
     name: 'dashboard',
     icon: 'dashboard',
