@@ -10,6 +10,8 @@ export default {
   'menu.dashboard': '仪表盘',
   'menu.card': '卡片管理',
   'menu.card.card-lst': '卡片列表',
+  'menu.card.pool': '流量池',
+  'menu.card.sms': '短信服务',
   'menu.renewal': '续费管理',
   'menu.renewal.service':'续费服务',
   'menu.renewal.automatic':'自动续费',

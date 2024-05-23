@@ -58,6 +58,18 @@ export default [
         path: '/card/list',
         component: './cardManage/card',
       },
+      {
+        name: 'pool',
+        icon: 'smile',
+        path: '/card/pool',
+        component: './cardManage/pool',
+      },
+      {
+        name: 'sms',
+        icon: 'smile',
+        path: '/card/sms',
+        component: './cardManage/card',
+      },
       
     ],
   },
