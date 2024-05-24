@@ -25,7 +25,8 @@ const Settings: ProLayoutProps & {
     pageContainer:{
       paddingBlockPageContainerContent: 16,
       paddingInlinePageContainerContent: 16,
-    }
+    },
+    
   },
 };
 
