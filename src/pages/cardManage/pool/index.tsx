@@ -5,13 +5,7 @@ import { Button, Card, ConfigProvider, List, Progress, Statistic, Tag } from 'an
 import React from 'react';
 
 const { Divider } = ProCard;
-const data = [
-  '移动流量池',
-  '移动-300M',
-  '移动-100M',
-  '联通流量池',
-  '联通-100M', 
-].map((item) => ({
+const data = ['移动流量池', '移动-300M', '移动-100M', '联通流量池', '联通-100M'].map((item) => ({
   title: item,
   subTitle: <Tag color="#5BD8A6">语雀专栏</Tag>,
   actions: [<a key="run">邀请</a>, <a key="delete">删除</a>],
@@ -20,11 +14,11 @@ const data = [
     <ConfigProvider
       theme={{
         components: {
-          List:{
-            itemPadding:'10px 0',
-            itemPaddingLG:'10px 0',
-            itemPaddingSM:'10px 0'
-          }
+          List: {
+            itemPadding: '10px 0',
+            itemPaddingLG: '10px 0',
+            itemPaddingSM: '10px 0',
+          },
           // Divider:{
           //   verticalMarginInline:0,
           //   textPaddingInline:0,
@@ -32,17 +26,17 @@ const data = [
         },
       }}
     >
-      <div style={{color:'#666',fontSize:14}}>
+      <div style={{ color: '#666', fontSize: 14 }}>
         <div>
-          <h4 style={{margin:0,color:'#999'}}>流量使用情况:</h4>
+          <h4 style={{ margin: 0, color: '#999' }}>流量使用情况:</h4>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <p>已用流量：80GB</p>
+            <div>已用流量：80GB</div>
             <div>剩余流量：100GB</div>
           </div>
-          <Progress percent={80} />
+          <Progress percent={80} size={'small'} />
         </div>
         <div>
-          <h4 style={{margin:0,color:'#999'}}>卡片激活情况:</h4>
+          <h4 style={{ margin: 0, color: '#999' }}>卡片激活情况:</h4>
           <ProCard.Group>
             <ProCard bodyStyle={{ padding: 5 }}>
               <Statistic title="已激活" value={79} valueStyle={{ fontSize: 14 }} />
@@ -61,42 +55,52 @@ const data = [
             </ProCard>
           </ProCard.Group>
         </div>
-        <p style={{margin:0,color:'#999'}}>最近同步时间：2024-03-15 15:16:23</p>
+        <p style={{ margin: 0, color: '#999' }}>最近同步时间：2024-03-15 15:16:23</p>
       </div>
     </ConfigProvider>
   ),
 }));
 const PoolPage: React.FC = () => {
   return (
-    <PageContainer>
+    <PageContainer
+      fixedHeader
+      header={{
+        title: '流量池',
+        extra: [
+          <Button type="primary" key="monitor">
+            告警设置
+          </Button>,
+        ],
+      }}
+    >
       <List<any>
         grid={{
-          gutter: 10,
+          gutter: 16,
           xs: 1,
           sm: 1,
           md: 2,
           lg: 2,
-          xl: 2,
+          xl: 3,
           xxl: 3,
         }}
         dataSource={data}
         renderItem={(item) => {
           return (
-            <List.Item style={{marginBlockEnd:10}}>
+            <List.Item style={{ marginBlockEnd: 12 }}>
               <Card
                 styles={{
                   header: {
-                    paddingInline: 16, 
-                    height:46
+                    // paddingInline: 16,
+                    // height: 46,
                   },
                   body: {
-                    paddingBlock: 8, 
-                    paddingInline: 16,   
+                    paddingBlock: 12,
+                    // paddingInline: 16,
                   },
                 }}
                 hoverable
-                // headerBordered
-                bordered
+               
+                // bordered
                 title={item.title}
                 extra={<Button type="link">详情</Button>}
               >
