@@ -1,6 +1,7 @@
 import { ModalForm, ProForm, ProFormDigit, ProFormList } from '@ant-design/pro-components';
-import { Alert, Button, Col, Row,Flex } from 'antd';
+import { Alert, Button, Flex } from 'antd';
 import React from 'react';
+import { useNavigate } from '@umijs/max';
 const AlarmModal: React.FC = () => {
   const onFinish = (values: Record<string, any>): Promise<any> => {
     console.log('values', values);
@@ -8,6 +9,10 @@ const AlarmModal: React.FC = () => {
       reject('true');
     });
   };
+const navigate = useNavigate()  
+const gotoBasePage =()=>{
+    navigate('/account/settings')
+}
   return (
     <ModalForm
       title="告警提醒"
@@ -52,6 +57,10 @@ const AlarmModal: React.FC = () => {
           </Flex>
         </ProForm.Item>
       </ProFormList>
+      <div>
+        <div>设置接收告警短信的手机号 <Button type='link' onClick={gotoBasePage}>去设置</Button></div>
+        <div>绑定微信公众号接受提醒 <Button type='link' onClick={gotoBasePage}>去绑定</Button></div>
+      </div>
     </ModalForm>
   );
 };

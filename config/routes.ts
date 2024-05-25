@@ -68,7 +68,7 @@ export default [
         name: 'sms',
         icon: 'smile',
         path: '/card/sms',
-        component: './cardManage/card',
+        component: './cardManage/sms',
       },
       
     ],
