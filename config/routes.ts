@@ -86,7 +86,7 @@ export default [
         name: 'service',
         icon: 'smile',
         path: 'service',
-        component: '@/pages/cardManage/card',
+        component: '@/pages/renewal/renewalService',
       },
       {
         name: 'automatic',
