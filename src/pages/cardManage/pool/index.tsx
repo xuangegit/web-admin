@@ -1,7 +1,7 @@
 import { ProCard } from '@ant-design/pro-components';
 import { PageContainer } from '@ant-design/pro-layout';
 import { Button, Card, ConfigProvider, List, Progress, Statistic, Tag } from 'antd';
-
+import AlarmModal from './components/AlarmModal';
 import React from 'react';
 
 const { Divider } = ProCard;
@@ -67,9 +67,7 @@ const PoolPage: React.FC = () => {
       header={{
         title: '流量池',
         extra: [
-          <Button type="primary" key="monitor">
-            告警设置
-          </Button>,
+          <AlarmModal key='alarm'/>,
         ],
       }}
     >
