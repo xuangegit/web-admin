@@ -1,8 +1,11 @@
 import { PageContainer, ProCard, StatisticCard } from '@ant-design/pro-components';
 import { Alert, Button, Col, Flex, Row } from 'antd';
+import { useNavigate } from '@umijs/max';
 import React from 'react';
 const { Divider } = StatisticCard;
+
 const RenewalService: React.FC = () => {
+  const navigate = useNavigate()
   const spanConfig = {
     span: 8,
     xs: 24,
@@ -13,7 +16,7 @@ const RenewalService: React.FC = () => {
     xxl: 6,
   };
   return (
-    <PageContainer>
+    <PageContainer extra={<Button type='primary' onClick={()=>navigate('/renewal/automatic')}>自动续费设置</Button>}>
       <StatisticCard.Group>
         <StatisticCard
           statistic={{ title: '续费总金额', value: 24234, suffix: '元', precision: 2 }}

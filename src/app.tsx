@@ -60,7 +60,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     waterMarkProps: {
       content: initialState?.currentUser?.name,
     },
-    breadcrumbRender: false,
+    // breadcrumbRender: false,
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;

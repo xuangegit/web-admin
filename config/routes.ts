@@ -90,15 +90,16 @@ export default [
       },
       {
         name: 'automatic',
+        hideInMenu: true,
         icon: 'smile',
         path: 'automatic',
-        component: '@/pages/cardManage/card',
+        component: '@/pages/renewal/automaticRenewal',
       },
       {
         name: 'list',
         icon: 'smile',
         path: 'list',
-        component: '@/pages/cardManage/card',
+        component: '@/pages/renewal/renewalRecord',
       },
       
     ],
