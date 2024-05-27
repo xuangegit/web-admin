@@ -1,9 +1,9 @@
 import { PageContainer, ProCard, StatisticCard } from '@ant-design/pro-components';
 import { Alert, Button, Col, Flex, Row } from 'antd';
 import { useNavigate } from '@umijs/max';
-import React from 'react';
+import React,{useState} from 'react';
+import RenewalModal from './componenets/renewalModal';
 const { Divider } = StatisticCard;
-
 const RenewalService: React.FC = () => {
   const navigate = useNavigate()
   const spanConfig = {
@@ -15,6 +15,7 @@ const RenewalService: React.FC = () => {
     xl: 8,
     xxl: 6,
   };
+  const [RenewalModalOpen, setRenewalModalOpen] = useState(false)
   return (
     <PageContainer extra={<Button type='primary' onClick={()=>navigate('/renewal/automatic')}>自动续费设置</Button>}>
       <StatisticCard.Group>
@@ -43,7 +44,7 @@ const RenewalService: React.FC = () => {
                 headerBordered
                 hoverable
                 title="中国移动本月套餐续费提醒"
-                extra={<Button type="primary">续费</Button>}
+                extra={<Button type="primary" onClick={()=>setRenewalModalOpen(true)}>续费</Button>}
               >
                 <Flex gap={16} vertical>
                   <div>套餐名称：移动4G</div>
@@ -58,7 +59,7 @@ const RenewalService: React.FC = () => {
                 bordered
                 hoverable
                 title="中国移动本月套餐续费提醒"
-                extra={<Button type="primary">续费</Button>}
+                extra={<Button type="primary" onClick={()=>setRenewalModalOpen(true)}>续费</Button>}
               >
                 <Flex gap={16} vertical>
                   <div>套餐名称：移动4G</div>
@@ -73,7 +74,7 @@ const RenewalService: React.FC = () => {
                 headerBordered
                 hoverable
                 title="中国移动本月套餐续费提醒"
-                extra={<Button type="primary">续费</Button>}
+                extra={<Button type="primary" onClick={()=>setRenewalModalOpen(true)}>续费</Button>}
               >
                 <Flex gap={16} vertical>
                   <div>套餐名称：移动4G</div>
@@ -84,6 +85,7 @@ const RenewalService: React.FC = () => {
           </Row>
         </>
       </ProCard>
+      <RenewalModal open={RenewalModalOpen} onClose={()=>setRenewalModalOpen(false)}/>
     </PageContainer>
   );
 };
