@@ -10,7 +10,7 @@ const SettingNoticeModal:React.FC<NoticeProps> = (props:NoticeProps) => {
         console.log(`switch to ${checked}`);
     }
     return (
-        <Modal title="自动续通知设置">
+        <Modal title="自动续通知设置" open={open}>
             <div><label>自动续费通知：</label><Switch onChange={switchChange}/>  </div>
             <ul>
                 <li>1. 该功能默认开启</li>
@@ -20,8 +20,8 @@ const SettingNoticeModal:React.FC<NoticeProps> = (props:NoticeProps) => {
         <div>
             <h3>通知设置</h3>
             <Flex vertical>
-                <div>设置接收余额提醒的手机号 <Botton type="link">去设置</Botton></div>
-                <div>设置接收余额提醒的手机号 <Botton type='link'>去绑定</Botton></div>
+                <div>设置接收余额提醒的手机号 <Button type="link">去设置</Button></div>
+                <div>设置接收余额提醒的手机号 <Button type='link'>去绑定</Button></div>
             </Flex>
         </div>
         </Modal>
