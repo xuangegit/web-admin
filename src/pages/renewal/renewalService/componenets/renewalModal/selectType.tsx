@@ -3,6 +3,7 @@ import { Button, Flex,Divider,Form } from 'antd';
 import React, { useMemo, useRef, useState } from 'react';
 import styles from './index.module.less'
 import {TypeName,TypeDes} from '../../interface.d'
+import FinalRenew from '../finalRenew';
 type SelectTypeProps = {  
   open: boolean;
   onClose:()=>void,
@@ -10,6 +11,8 @@ type SelectTypeProps = {
 };
 
 const SelectType: React.FC<SelectTypeProps> = (props) => {
+  const [finalOpen,setFinalOpen] =useState(false);
+  const [info,setInfo] = useState<any>({})
   const { open,onClose } = props;
   const formRef = useRef();
   const [form] =Form.useForm()
@@ -219,10 +222,18 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
     console.log('result', result);
     return result;
   }, [data]);
+  const GotoFinal = (info:any)=>{ 
+    onClose();
+    setInfo(info)
+    setFinalOpen(true);
+  
+  }
   return (
+    <>
     <ModalForm
       form={form}
       formRef={formRef}
+      
       modalProps={{ onCancel:onClose,destroyOnClose:true }}
       title="续费"
       width={1200}
@@ -253,7 +264,7 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
                         {item?.size}张{it?.name}
                       </div>
                     
-                    <Button type="link" style={{flex:'0 0 60px'}} onClick={()=>form.submit()}>去续费</Button>
+                    <Button type="link" style={{flex:'0 0 60px'}} onClick={()=>{GotoFinal(it)}}>去续费</Button>
                   </Flex>
                 )}
               </div>
@@ -262,6 +273,9 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
         ))}
       </Flex>
     </ModalForm>
+    {finalOpen&&<FinalRenew open={finalOpen} {...info} onClose={()=>setFinalOpen(false)}/>}
+    </>
+    
   );
 };
 export default SelectType;

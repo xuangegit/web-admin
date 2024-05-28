@@ -3,7 +3,7 @@ import SelectType from "./selectType";
 import Manual from "./manual";
 import {OperTypeEnum}  from '../../interface.d'
 type Props = {
-    type:OperTypeEnum,
+    type:string,
     open:boolean,
     onClose:()=>void,
     onOk?:()=>void,

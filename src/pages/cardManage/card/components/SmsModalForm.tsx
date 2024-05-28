@@ -191,7 +191,7 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
               ]}
             />
           </div>
-          <Alert message='当前有效号码8个'></Alert>
+          <Alert message='当前有效ICCID8个'></Alert>
         </ProFormItem>
         
         <ProFormItem  label="短信内容" required>

@@ -16,6 +16,7 @@ const RenewalService: React.FC = () => {
     xxl: 6,
   };
   const [RenewalModalOpen, setRenewalModalOpen] = useState(false)
+ 
   return (
     <PageContainer extra={<Button type='primary' onClick={()=>navigate('/renewal/automatic')}>自动续费设置</Button>}>
       <StatisticCard.Group>
@@ -85,7 +86,7 @@ const RenewalService: React.FC = () => {
           </Row>
         </>
       </ProCard>
-      <RenewalModal open={RenewalModalOpen} onClose={()=>setRenewalModalOpen(false)}/>
+      <RenewalModal open={RenewalModalOpen} type={'selected'} onClose={()=>setRenewalModalOpen(false)}/>
     </PageContainer>
   );
 };

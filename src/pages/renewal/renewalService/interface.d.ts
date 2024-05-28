@@ -1,6 +1,6 @@
 export enum OperTypeEnum {
     MANUAL = 'manual',
-    SELECT = 'select',
+    SELECTED = 'selected',
 }
 
 export enum RenewalType {
