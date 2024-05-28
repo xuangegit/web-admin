@@ -1,13 +1,15 @@
 import { PageContainer, ProCard } from '@ant-design/pro-components';
 import { Button ,Divider,Flex} from 'antd';
 import React from 'react';
-import styles from './index.less'
+import styles from './index.less' 
+import SettingNoticeModal from './components/settingNoticeModal';
 const AutomaticRenewal: React.FC = () => {
+  const [noticeModalOpen,setNoticeModalOpen] = React.useState(false);
   return (
     <PageContainer>
       <ProCard>
         <div>
-          自动续费规则 <Button size='small'>设置通知</Button>
+          自动续费规则 <Button size='small' onClick={()=>setNoticeModalOpen(true)}>设置通知</Button>
         </div>
 
         <ol className={styles.ol} style={{marginTop:10}}>
@@ -49,6 +51,7 @@ const AutomaticRenewal: React.FC = () => {
             <Button>关闭自动续费</Button>
         </Flex>
       </ProCard>
+      <SettingNoticeModal open={noticeModalOpen} onClose={()=>setNoticeModalOpen(false)}/>
     </PageContainer>
   );
 };

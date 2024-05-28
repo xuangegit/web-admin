@@ -1,18 +1,16 @@
 import  React from 'react';
 import SelectType from "./selectType";
 import Manual from "./manual";
+import {OperTypeEnum}  from '../../interface.d'
 type Props = {
-    type?:'manual'|'select',
+    type:OperTypeEnum,
     open:boolean,
-    onClose?:()=>void,
+    onClose:()=>void,
     onOk?:()=>void,
 }
-export enum TypeEnum {
-    MANUAL = 'manual',
-    SELECT = 'select',
-}
+
 const RenewalModal:React.FC<Props> = (props) => {
-    const {type} = props;
-    return type===TypeEnum.MANUAL?<Manual/>:<SelectType {...props}/>
+    const {type,...restProps} = props;
+    return type===OperTypeEnum.MANUAL?<Manual/>:<SelectType {...restProps}/>
 };
 export default RenewalModal;
