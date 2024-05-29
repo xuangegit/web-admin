@@ -7,6 +7,7 @@ type Props = {
     open:boolean,
     onClose:()=>void,
     onOk?:()=>void,
+    
 }
 
 const RenewalModal:React.FC<Props> = (props) => {

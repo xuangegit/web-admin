@@ -12,6 +12,7 @@ type SelectTypeProps = {
 
 const SelectType: React.FC<SelectTypeProps> = (props) => {
   const [finalOpen,setFinalOpen] =useState(false);
+  const [type,setType] = useState('')
   const [info,setInfo] = useState<any>({})
   const { open,onClose } = props;
   const formRef = useRef();
@@ -222,8 +223,9 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
     console.log('result', result);
     return result;
   }, [data]);
-  const GotoFinal = (info:any)=>{ 
+  const GotoFinal = (type:string,info:any)=>{ 
     onClose();
+    setType(type)
     setInfo(info)
     setFinalOpen(true);
   
@@ -261,10 +263,10 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
                   <Flex align='center'>
                     
                       <div className={styles.ellipsis} title={`${it?.size}张${it.name}`}>
-                        {item?.size}张{it?.name}
+                        {it?.size}张{it?.name}
                       </div>
                     
-                    <Button type="link" style={{flex:'0 0 60px'}} onClick={()=>{GotoFinal(it)}}>去续费</Button>
+                    <Button type="link" style={{flex:'0 0 60px'}} onClick={()=>{GotoFinal(item.key,it)}}>去续费</Button>
                   </Flex>
                 )}
               </div>
@@ -273,7 +275,7 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
         ))}
       </Flex>
     </ModalForm>
-    {finalOpen&&<FinalRenew open={finalOpen} {...info} onClose={()=>setFinalOpen(false)}/>}
+    {finalOpen&&<FinalRenew open={finalOpen} info={info} type={type} onClose={()=>setFinalOpen(false)}/>}
     </>
     
   );

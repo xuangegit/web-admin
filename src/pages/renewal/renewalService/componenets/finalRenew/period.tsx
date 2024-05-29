@@ -16,13 +16,12 @@ const PackageModalForm: React.FC<any> = (props) => {
       }
   }  
   const {
-    
     open,
     onClose,
     info,
   } = props;
-  const {iccids,isAllowAutoRecharge,key:planId} = info
-  
+  console.log('info',info)
+  const {isAllowAutoRecharge,key:planId,iccids} = info
   return (
     <ModalForm
       title="续套餐周期 - 自定义套餐卡"
@@ -54,7 +53,7 @@ const PackageModalForm: React.FC<any> = (props) => {
             </div>
             <ProFormItem dependencies={['iccids']}>
                 {({ getFieldValue }) => {
-                    let iccids = getFieldValue('iccids');
+                    let iccids = getFieldValue('iccids')||[];
                     return <Alert message={`当前有效ICCID${iccids.length}个`}></Alert>;
                 }}
             </ProFormItem>
@@ -67,6 +66,7 @@ const PackageModalForm: React.FC<any> = (props) => {
           <ProFormItem shouldUpdate>
             {({ getFieldValue }) => {
               const iccids = getFieldValue('iccids');
+              console.log('iccids',iccids)
               let count = iccids.length + 1;
               return <div>最多可续{count}份</div>;
             }}

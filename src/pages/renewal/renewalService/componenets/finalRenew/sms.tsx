@@ -1,4 +1,4 @@
-import { ModalForm, ProFormCheckbox, ProFormDigit, ProFormItem,ProFormSwitch } from '@ant-design/pro-components';
+import { ModalForm, ProFormCheckbox, ProFormSelect, ProFormItem,ProFormSwitch } from '@ant-design/pro-components';
 import { Alert, Button, Divider, Flex } from 'antd';
 import React from 'react';
 
@@ -16,12 +16,12 @@ const PackageModalForm: React.FC<any> = (props) => {
       }
   }  
   const {
-    
+    iccids,
     open,
     onClose,
     info,
   } = props;
-  const {iccids,isAllowAutoRecharge,key:planId} = info
+  const {isAllowAutoRecharge,key:planId} = info
   
   return (
     <ModalForm
@@ -54,30 +54,27 @@ const PackageModalForm: React.FC<any> = (props) => {
             </div>
             <ProFormItem dependencies={['iccids']}>
                 {({ getFieldValue }) => {
-                    let iccids = getFieldValue('iccids');
+                    let iccids = getFieldValue('iccids')||[];
                     return <Alert message={`当前有效ICCID${iccids.length}个`}></Alert>;
                 }}
             </ProFormItem>
         </Flex>
       </ProFormItem>
-      <ProFormItem label="选择套餐" name='planId' initialValue={planId}>当前套餐:{planId}</ProFormItem>
-      <ProFormItem label="续费周期" required style={{marginBottom: 0}}>
-        <Flex align="center" gap={10} >
-          <ProFormDigit label="" name='count' addonAfter="份" rules={[{required:true,message:'请输入续费份数'}]}/>
-          <ProFormItem shouldUpdate>
-            {({ getFieldValue }) => {
-              const iccids = getFieldValue('iccids');
-              let count = iccids.length + 1;
-              return <div>最多可续{count}份</div>;
-            }}
-          </ProFormItem>
-        </Flex>
-      </ProFormItem>
+      <ProFormSelect
+        rules={[{ required: true, message: '请选择续费方式' }]}
+        label='续费方式'
+        name='renewType'
+        options={[
+            {label:'月包',value:'month'},
+            {label:'年包',value:'year'},
+        ]}
+      />
+     
       <ProFormItem noStyle>
         <Flex vertical>
-          <div>1、若卡已停卡，续费后卡具体激活时间受运营商接口速度影响，月初预计2-4小时恢复。</div>
+          <div>1、短信包都以自然月的方式进行结算；开通当月为一个自然月，算入短信包周期内。即月包当月末到期。</div>
           <div>
-            2、续费成功后，卡计划套餐将在一定时间内完成添加，过期时间会在计划套餐添加完成后变更。
+            2、当前未开通短信包的卡，在续费后需要1-2个工作日后方可使用。
           </div>
         </Flex>
       </ProFormItem>

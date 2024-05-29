@@ -1,7 +1,7 @@
-import { ModalForm, ProFormCheckbox, ProFormDigit, ProFormItem,ProFormSwitch } from '@ant-design/pro-components';
+import { ModalForm, ProFormCheckbox, ProFormDigit, ProFormItem,ProFormSwitch,ProFormSelect } from '@ant-design/pro-components';
 import { Alert, Button, Divider, Flex } from 'antd';
 import React from 'react';
-
+import { packageList,getRatePlanList } from '../../mock';
 const PackageModalForm: React.FC<any> = (props) => {
   const formLayout={
     labelCol:{
@@ -16,20 +16,18 @@ const PackageModalForm: React.FC<any> = (props) => {
       }
   }  
   const {
-    
     open,
     onClose,
-    info,
   } = props;
   const {iccids,isAllowAutoRecharge,key:planId} = info
-  
   return (
     <ModalForm
-      title="续套餐周期 - 自定义套餐卡"
+      title="修改套餐 - 自定义套餐卡"
       layout="horizontal"
       width={560}
       {...formLayout}
       open={open}
+     
       modalProps={{
         onCancel: onClose,
       }}
@@ -60,7 +58,12 @@ const PackageModalForm: React.FC<any> = (props) => {
             </ProFormItem>
         </Flex>
       </ProFormItem>
-      <ProFormItem label="选择套餐" name='planId' initialValue={planId}>当前套餐:{planId}</ProFormItem>
+      <ProFormSelect 
+        label="选择套餐" 
+        name="planId" 
+        rules={[{required:true,message:'请选择套餐'}]} 
+        options={getRatePlanList()}
+      />     
       <ProFormItem label="续费周期" required style={{marginBottom: 0}}>
         <Flex align="center" gap={10} >
           <ProFormDigit label="" name='count' addonAfter="份" rules={[{required:true,message:'请输入续费份数'}]}/>
@@ -84,7 +87,7 @@ const PackageModalForm: React.FC<any> = (props) => {
       <Divider />
       <ProFormItem shouldUpdate>
         {({ getFieldValue }) => {
-          let count = getFieldValue('iccids')?.length;
+          let count = getFieldValue('iccids').length;
           let money = count * 12.5;
           return (
             <Flex vertical gap={8} style={{fontWeight:'bolder',fontSize:16,marginLeft:20}}>
@@ -104,7 +107,7 @@ const PackageModalForm: React.FC<any> = (props) => {
           );
         }}
       </ProFormItem>
-      {isAllowAutoRecharge && 
+     {isAllowAutoRecharge && 
         <ProFormSwitch 
             checkedChildren="开启"
             unCheckedChildren="关闭" 
