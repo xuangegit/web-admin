@@ -32,6 +32,7 @@ const PackageModalForm: React.FC<any> = (props) => {
       open={open}
       modalProps={{
         onCancel: onClose,
+        destroyOnClose:true 
       }}
     >
       <ProFormItem label="ICCID" tooltip="这里只显示有效的iccid" required style={{marginBottom: 0}}>
@@ -106,6 +107,7 @@ const PackageModalForm: React.FC<any> = (props) => {
       </ProFormItem>
       {isAllowAutoRecharge && 
         <ProFormSwitch 
+            initialValue={true}
             checkedChildren="开启"
             unCheckedChildren="关闭" 
             name="autoRecharge" 

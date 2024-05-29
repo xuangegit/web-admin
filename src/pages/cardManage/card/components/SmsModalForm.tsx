@@ -20,12 +20,11 @@ export type UpdateFormProps = {
   onCancel: (flag?: boolean, formVals?: FormValueType) => void;
   onSubmit: (values?: FormValueType) => Promise<void>;
   visible: boolean;
-  values: { [key: string]: any };
+  values?: { [key: string]: any };
 };
 
 const UpdateForm: React.FC<UpdateFormProps> = (props) => {
   const navigate = useNavigate();
-  const baseRef = useRef<any>();
   return (
     <StepsForm
       stepsProps={

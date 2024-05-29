@@ -6,12 +6,11 @@ type Props = {
     type:string,
     open:boolean,
     onClose:()=>void,
-    onOk?:()=>void,
-    
+    onOk?:(p?:any)=>void,    
 }
 
 const RenewalModal:React.FC<Props> = (props) => {
     const {type,...restProps} = props;
-    return type===OperTypeEnum.MANUAL ? <Manual/> : <SelectType {...restProps}/>
+    return type===OperTypeEnum.MANUAL ? <Manual {...props}/> : <SelectType {...restProps}/>
 };
 export default RenewalModal;

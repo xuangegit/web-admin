@@ -1,27 +1,29 @@
-import { ModalForm, ProFormCheckbox, ProFormDigit, ProFormItem,ProFormSwitch } from '@ant-design/pro-components';
+import {
+  ModalForm,
+  ProFormCheckbox,
+  ProFormDigit,
+  ProFormItem,
+  ProFormSwitch,
+} from '@ant-design/pro-components';
 import { Alert, Button, Divider, Flex } from 'antd';
 import React from 'react';
 
 const PackageModalForm: React.FC<any> = (props) => {
-  const formLayout={
-    labelCol:{
-        xs: 24,
-        sm: 7,
-        md: 4,
-      },
-      wrapperCol:{
-        xs: 24,
-        sm: 13,
-        md: 20,
-      }
-  }  
-  const {
-    open,
-    onClose,
-    info,
-  } = props;
-  console.log('info',info)
-  const {isAllowAutoRecharge,key:planId,iccids} = info
+  const formLayout = {
+    labelCol: {
+      xs: 24,
+      sm: 7,
+      md: 4,
+    },
+    wrapperCol: {
+      xs: 24,
+      sm: 13,
+      md: 20,
+    },
+  };
+  const { open, onClose, info } = props;
+  console.log('info', info);
+  const { isAllowAutoRecharge, key: planId, iccids } = info;
   return (
     <ModalForm
       title="续套餐周期 - 自定义套餐卡"
@@ -31,42 +33,55 @@ const PackageModalForm: React.FC<any> = (props) => {
       open={open}
       modalProps={{
         onCancel: onClose,
+        destroyOnClose: true,
       }}
     >
-      <ProFormItem label="ICCID" tooltip="这里只显示有效的iccid" required style={{marginBottom: 0}}>
+      <ProFormItem
+        label="ICCID"
+        tooltip="这里只显示有效的iccid"
+        required
+        style={{ marginBottom: 0 }}
+      >
         <Flex gap={6} vertical>
-            <div
+          <div
             style={{
-                border: '1px solid #ccc',
-                padding: '10px 15px',
-                borderRadius: 5,
-                maxHeight: 150,
-                overflowY: 'auto',
+              border: '1px solid #ccc',
+              padding: '10px 15px',
+              borderRadius: 5,
+              maxHeight: 150,
+              overflowY: 'auto',
             }}
-            >
+          >
             <ProFormCheckbox.Group
-                name="iccids"
-                initialValue={iccids}
-                rules={[{ required: true, message: '请选择至少一个iccid' }]}
-                options={iccids}
+              name="iccids"
+              initialValue={iccids}
+              rules={[{ required: true, message: '请选择至少一个iccid' }]}
+              options={iccids}
             />
-            </div>
-            <ProFormItem dependencies={['iccids']}>
-                {({ getFieldValue }) => {
-                    let iccids = getFieldValue('iccids')||[];
-                    return <Alert message={`当前有效ICCID${iccids.length}个`}></Alert>;
-                }}
-            </ProFormItem>
+          </div>
+          <ProFormItem dependencies={['iccids']}>
+            {({ getFieldValue }) => {
+              let iccids = getFieldValue('iccids') || [];
+              return <Alert message={`当前有效ICCID${iccids.length}个`}></Alert>;
+            }}
+          </ProFormItem>
         </Flex>
       </ProFormItem>
-      <ProFormItem label="选择套餐" name='planId' initialValue={planId}>当前套餐:{planId}</ProFormItem>
-      <ProFormItem label="续费周期" required style={{marginBottom: 0}}>
-        <Flex align="center" gap={10} >
-          <ProFormDigit label="" name='count' addonAfter="份" rules={[{required:true,message:'请输入续费份数'}]}/>
+      <ProFormItem label="选择套餐" name="planId" initialValue={planId}>
+        当前套餐:{planId}
+      </ProFormItem>
+      <ProFormItem label="续费周期" required style={{ marginBottom: 0 }}>
+        <Flex align="center" gap={10}>
+          <ProFormDigit
+            label=""
+            name="count"
+            addonAfter="份"
+            rules={[{ required: true, message: '请输入续费份数' }]}
+          />
           <ProFormItem shouldUpdate>
             {({ getFieldValue }) => {
               const iccids = getFieldValue('iccids');
-              console.log('iccids',iccids)
+              console.log('iccids', iccids);
               let count = iccids.length + 1;
               return <div>最多可续{count}份</div>;
             }}
@@ -87,7 +102,7 @@ const PackageModalForm: React.FC<any> = (props) => {
           let count = getFieldValue('iccids')?.length;
           let money = count * 12.5;
           return (
-            <Flex vertical gap={8} style={{fontWeight:'bolder',fontSize:16,marginLeft:20}}>
+            <Flex vertical gap={8} style={{ fontWeight: 'bolder', fontSize: 16, marginLeft: 20 }}>
               <div>
                 套餐金额：<label>￥{money}</label>
               </div>
@@ -96,7 +111,7 @@ const PackageModalForm: React.FC<any> = (props) => {
               </div>
               <div>
                 账户余额：<label>￥{money}</label>
-                <span style={{fontWeight:'normal',fontSize:14,color:'red'}}>
+                <span style={{ fontWeight: 'normal', fontSize: 14, color: 'red' }}>
                   &nbsp;&nbsp;余额不足?<Button type="link">去充值</Button>
                 </span>
               </div>
@@ -104,14 +119,16 @@ const PackageModalForm: React.FC<any> = (props) => {
           );
         }}
       </ProFormItem>
-      {isAllowAutoRecharge && 
-        <ProFormSwitch 
-            checkedChildren="开启"
-            unCheckedChildren="关闭" 
-            name="autoRecharge" 
-            label="自动续费"
-            tooltip='为本次续费设置自动续费' 
-        />}
+      {isAllowAutoRecharge && (
+        <ProFormSwitch
+          initialValue={true}
+          checkedChildren="开启"
+          unCheckedChildren="关闭"
+          name="autoRecharge"
+          label="自动续费"
+          tooltip="为本次续费设置自动续费"
+        />
+      )}
     </ModalForm>
   );
 };

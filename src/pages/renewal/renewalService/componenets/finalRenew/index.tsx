@@ -1,6 +1,4 @@
 import React ,{Suspense,lazy}from 'react';
-import PackageModalForm from './package';
-import {RenewalType} from '../../interface'
 interface FinalRenewProps{
     open:boolean;
     onClose:()=>void;
@@ -8,6 +6,7 @@ interface FinalRenewProps{
     info:any;
 }
 const FinalRenew:React.FC<FinalRenewProps> = (props) => {
+    console.log('finalProps',props)
     const {type}=props;
     const Content = lazy(() => import(`./${type}`));
     return <Suspense fallback={<div>正在加载...</div>}>

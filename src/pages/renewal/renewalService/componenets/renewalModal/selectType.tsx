@@ -14,7 +14,7 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
   const [finalOpen,setFinalOpen] =useState(false);
   const [type,setType] = useState('')
   const [info,setInfo] = useState<any>({})
-  const { open,onClose } = props;
+  const {open,onClose } = props;
   const formRef = useRef();
   const [form] =Form.useForm()
   const [data, setData] = useState<any>({
@@ -224,18 +224,18 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
     return result;
   }, [data]);
   const GotoFinal = (type:string,info:any)=>{ 
+    console.log('type',type);
+    console.log('info',info)
     onClose();
     setType(type)
-    setInfo(info)
+    setInfo(info);
     setFinalOpen(true);
-  
   }
   return (
     <>
     <ModalForm
       form={form}
       formRef={formRef}
-      
       modalProps={{ onCancel:onClose,destroyOnClose:true }}
       title="续费"
       width={1200}
@@ -261,7 +261,6 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
               <div key={it.key}>
                 {it?.size && (
                   <Flex align='center'>
-                    
                       <div className={styles.ellipsis} title={`${it?.size}张${it.name}`}>
                         {it?.size}张{it?.name}
                       </div>

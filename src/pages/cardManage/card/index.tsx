@@ -1,4 +1,5 @@
 import HeaderDropdown from '@/components/HeaderDropdown';
+import RenewalModal from '@/pages/renewal/renewalService/componenets/renewalModal';
 import {
   AccountBookOutlined,
   EditOutlined,
@@ -13,14 +14,14 @@ import {
   ProDescriptions,
   ProTable,
 } from '@ant-design/pro-components';
-import { Button, Drawer,  Tooltip } from 'antd';
+import { Button, Drawer, Tooltip } from 'antd';
 import React, { useRef, useState } from 'react';
+import AutoRenewalModal from './components/autoRenewalModal';
+import SmsModalForm from './components/SmsModalForm';
 import { getColumns } from './config';
 import type { CardListItem } from './data';
-import {  rule } from './service';
-import {useCard} from './hooks'
-import SmsModalForm from './components/SmsModalForm'
-import RenewalModal from '@/pages/renewal/renewalService/components/renewalModal'
+import { useCard } from './hooks';
+import { rule } from './service';
 /**
  * 更新节点
  *
@@ -28,19 +29,24 @@ import RenewalModal from '@/pages/renewal/renewalService/components/renewalModal
  */
 const CardPage: React.FC = () => {
   const {
-      currentRow,
-      setCurrentRow, 
-      smsModalVisible, 
-      setSmsModalVisible,
-      showDetail, 
-      setShowDetail,
-      selectedRowsState,
-      setSelectedRows,
-      renewalModalOpen,
-      setRenewalModalOpen
+    currentRow,
+    setCurrentRow,
+    smsModalVisible,
+    setSmsModalVisible,
+    showDetail,
+    setShowDetail,
+    selectedRowsState,
+    setSelectedRows,
+    autoRenewalOpen,
+    setAutoRenewallOpen,
+    renewalstepOne,
+    setRenewalStepOne,
+    renewalstepTwo,
+    setRenewalStepTwo,
   } = useCard();
   const actionRef = useRef<ActionType>();
   const [activeKey, setActiveKey] = useState('1');
+
   const items = [
     {
       key: '1',
@@ -80,10 +86,24 @@ const CardPage: React.FC = () => {
           reload: false,
         }}
         toolBarRender={() => [
-          <Button type="primary" key="going" icon={<AccountBookOutlined />} onClick={() => {}}>
+          <Button
+            type="primary"
+            key="going"
+            icon={<AccountBookOutlined />}
+            onClick={() => {
+              if (selectedRowsState.length > 0) setRenewalStepTwo(true);
+              else setRenewalStepOne(true);
+            }}
+          >
             续费
           </Button>,
-          <Button key="auto" icon={<PropertySafetyOutlined />} onClick={() => {}}>
+          <Button
+            key="auto"
+            icon={<PropertySafetyOutlined />}
+            onClick={() => {
+              setAutoRenewallOpen(true);
+            }}
+          >
             自动续费
           </Button>,
           <Tooltip title="发送短信" key="sms">
@@ -92,7 +112,9 @@ const CardPage: React.FC = () => {
               key="primary"
               shape="circle"
               icon={<MessageOutlined />}
-              onClick={() => {setSmsModalVisible(true)}}
+              onClick={() => {
+                setSmsModalVisible(true);
+              }}
             />
           </Tooltip>,
 
@@ -106,10 +128,9 @@ const CardPage: React.FC = () => {
             <HeaderDropdown
               menu={{
                 selectedKeys: [],
-                onClick: (event:any)=>{
-                  const {key} = event
-                  console.log('key',key)
-
+                onClick: (event: any) => {
+                  const { key } = event;
+                  console.log('key', key);
                 },
                 items: [
                   {
@@ -119,7 +140,7 @@ const CardPage: React.FC = () => {
                   {
                     key: '2',
                     label: '导出历史',
-                  }
+                  },
                 ],
               }}
             >
@@ -194,17 +215,42 @@ const CardPage: React.FC = () => {
           />
         )}
       </Drawer>
-      { smsModalVisible &&
+      {smsModalVisible && (
         <SmsModalForm
           visible={smsModalVisible}
-          onSubmit={()=>{return Promise.resolve()}}
-          onCancel={()=>{setSmsModalVisible(false)}}
+          onSubmit={() => {
+            return Promise.resolve();
+          }}
+          onCancel={() => {
+            setSmsModalVisible(false);
+          }}
         />
-      }
-      {
-        renewalModalOpen && 
-        <RenewalModal open={renewalModalOpen} onClose={()=>{setRenewalModalOpen(false)}} type={selectedRowsState?.length > 0?'selected':'manual'}/>
-      }
+      )}
+
+      <RenewalModal
+        type="selected"
+        open={renewalstepTwo}
+        onClose={() => {
+          setRenewalStepTwo(false);
+        }}
+      />
+
+      <RenewalModal
+        type="manual"
+        onOk={() => {
+          setRenewalStepOne(false);
+          setRenewalStepTwo(true);
+        }}
+        open={renewalstepOne}
+        onClose={() => {
+          setRenewalStepOne(false);
+        }}
+      />
+      <AutoRenewalModal
+        open={autoRenewalOpen}
+        onClose={() => setAutoRenewallOpen(false)}
+        data={selectedRowsState}
+      />
     </PageContainer>
   );
 };
