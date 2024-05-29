@@ -12,6 +12,6 @@ type Props = {
 
 const RenewalModal:React.FC<Props> = (props) => {
     const {type,...restProps} = props;
-    return type===OperTypeEnum.MANUAL?<Manual/>:<SelectType {...restProps}/>
+    return type===OperTypeEnum.MANUAL ? <Manual/> : <SelectType {...restProps}/>
 };
 export default RenewalModal;

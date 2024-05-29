@@ -20,6 +20,7 @@ import type { CardListItem } from './data';
 import {  rule } from './service';
 import {useCard} from './hooks'
 import SmsModalForm from './components/SmsModalForm'
+import RenewalModal from '@/pages/renewal/renewalService/components/renewalModal'
 /**
  * 更新节点
  *
@@ -34,7 +35,9 @@ const CardPage: React.FC = () => {
       showDetail, 
       setShowDetail,
       selectedRowsState,
-      setSelectedRows
+      setSelectedRows,
+      renewalModalOpen,
+      setRenewalModalOpen
   } = useCard();
   const actionRef = useRef<ActionType>();
   const [activeKey, setActiveKey] = useState('1');
@@ -191,11 +194,17 @@ const CardPage: React.FC = () => {
           />
         )}
       </Drawer>
-      {smsModalVisible&&<SmsModalForm
+      { smsModalVisible &&
+        <SmsModalForm
           visible={smsModalVisible}
           onSubmit={()=>{return Promise.resolve()}}
           onCancel={()=>{setSmsModalVisible(false)}}
-        />}
+        />
+      }
+      {
+        renewalModalOpen && 
+        <RenewalModal open={renewalModalOpen} onClose={()=>{setRenewalModalOpen(false)}} type={selectedRowsState?.length > 0?'selected':'manual'}/>
+      }
     </PageContainer>
   );
 };

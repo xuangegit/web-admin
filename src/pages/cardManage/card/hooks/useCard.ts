@@ -5,6 +5,7 @@ const useCard = () => {
   const [smsModalVisible, setSmsModalVisible] = useState<boolean>(false)
   const [showDetail, setShowDetail] = useState<boolean>(false)
   const [selectedRowsState, setSelectedRows] = useState<CardListItem[]>([]);
+  const [renewalModalOpen,setRenewalModalOpen] =useState<boolean>(false)
   
   return {
         currentRow,
@@ -14,7 +15,9 @@ const useCard = () => {
         showDetail,
         setShowDetail,
         selectedRowsState,
-        setSelectedRows
+        setSelectedRows,
+        renewalModalOpen,
+        setRenewalModalOpen
     }
 }
 export default useCard;
