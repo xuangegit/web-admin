@@ -17,16 +17,13 @@ import {
 import { Button, Drawer, Tooltip } from 'antd';
 import React, { useRef, useState } from 'react';
 import AutoRenewalModal from './components/autoRenewalModal';
+import ShutDownProtection from './components/shutdownProtection';
 import SmsModalForm from './components/SmsModalForm';
 import { getColumns } from './config';
 import type { CardListItem } from './data';
 import { useCard } from './hooks';
 import { rule } from './service';
-/**
- * 更新节点
- *
- * @param fields
- */
+
 const CardPage: React.FC = () => {
   const {
     currentRow,
@@ -43,6 +40,8 @@ const CardPage: React.FC = () => {
     setRenewalStepOne,
     renewalstepTwo,
     setRenewalStepTwo,
+    shutDownVisible,
+    setShutDownVisible,
   } = useCard();
   const actionRef = useRef<ActionType>();
   const [activeKey, setActiveKey] = useState('1');
@@ -121,7 +120,7 @@ const CardPage: React.FC = () => {
           <Button key="remark" icon={<EditOutlined />} onClick={() => {}}>
             批量备注
           </Button>,
-          <Button danger key="stop" onClick={() => {}}>
+          <Button danger key="stop" onClick={() => setShutDownVisible(true)}>
             停机保号
           </Button>,
           <Tooltip title="批量导出" key="export">
@@ -251,6 +250,7 @@ const CardPage: React.FC = () => {
         onClose={() => setAutoRenewallOpen(false)}
         data={selectedRowsState}
       />
+      <ShutDownProtection visible={shutDownVisible} onCancel={() => setShutDownVisible(false)} selectedRowsState={selectedRowsState}/>
     </PageContainer>
   );
 };
