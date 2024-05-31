@@ -3,6 +3,7 @@ import { PageContainer } from '@ant-design/pro-layout';
 import { Button, Card, ConfigProvider, List, Progress, Statistic, Tag } from 'antd';
 import AlarmModal from './components/AlarmModal';
 import React from 'react';
+import { useNavigate } from '@umijs/max';
 
 const { Divider } = ProCard;
 const data = ['移动流量池', '移动-300M', '移动-100M', '联通流量池', '联通-100M'].map((item) => ({
@@ -61,6 +62,7 @@ const data = ['移动流量池', '移动-300M', '移动-100M', '联通流量池'
   ),
 }));
 const PoolPage: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <PageContainer
       fixedHeader
@@ -100,7 +102,7 @@ const PoolPage: React.FC = () => {
                
                 // bordered
                 title={item.title}
-                extra={<Button type="link">详情</Button>}
+                extra={<Button type="link" onClick={()=>navigate(`/card/pool/detail?title=${item.title}`)}>详情</Button>}
               >
                 {item.content}
               </Card>
