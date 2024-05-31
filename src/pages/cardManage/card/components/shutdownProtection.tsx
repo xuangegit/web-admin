@@ -6,7 +6,7 @@
     ProFormSelect
   } from '@ant-design/pro-components';
   import { Modal, Button, Alert,Flex,Divider} from 'antd';
-  import React ,{useRef,useEffect}from 'react';
+  import React ,{useRef,useEffect,useState}from 'react';
   import { useNavigate } from '@umijs/max';
  
   export type ShutdownProtectionProps = {
@@ -14,25 +14,24 @@
     onSubmit?: (values?: any) => Promise<void>;
     visible: boolean;
     values?: { [key: string]: any };
-    selectedRowsState?:any[]
+    selectedRowsState:any[]
   };
   const price = 6.5
   const ShutdownProtection: React.FC<ShutdownProtectionProps> = (props) => {
     const navigate = useNavigate();
     const stepFormRef = useRef();
     const {selectedRowsState} = props
+    console.log('selectedRowsState',selectedRowsState);
+    const [current,setCurrent] = useState();
+    useEffect(()=>{setCurrent(selectedRowsState?.length>0?1:0)},[selectedRowsState])
+    console.log('current',current);
     return (
       <StepsForm
         formRef={stepFormRef}
-        stepsProps={
-          {
-            // size: 'small',
-          }
-        }
-        
+        current={current}
         stepsFormRender={(dom, submitter) => {
-            console.log('dom',dom);
-            console.log('submitter',submitter);
+            // console.log('dom',dom);
+            // console.log('submitter',submitter);
           return (
             <Modal
               width={660}
@@ -54,8 +53,25 @@
             </Modal>
           );
         }}
-        onFinish={()=>{
+        submitter={{
+            onReset:()=>{
+                setCurrent(current-1)
+            },
+            render: (props, dom) => {
+              console.log('props',props);
+              console.log('dom',dom)
+              if(props.step===1&&selectedRowsState?.length>0) {
+                return 
+                <Button type="primary" onClick={()=>{
+                    props.onSubmit();
+                }}> 提交</Button>
+              }
+              return dom
+            }
+        }}
+        onFinish={(values)=>{
             console.log('onFinish',stepFormRef.current);
+          
         }}
       >
         <StepsForm.StepForm
@@ -63,6 +79,7 @@
             name: props?.values?.baseInfo,
             type: 0,
           }}
+         
           name="baseInfo"
           layout='horizontal'
           labelCol={
@@ -80,6 +97,18 @@
             }
           }
           title="卡片信息"
+          onFinish={async (values) => {
+            const reg =/\s*(\r|\n)\s*/g;
+            const content =values.iccids.trim().replace(reg,',').split(',');
+            console.log('content',content)
+            //   setCurrent(1);
+            return new Promise((resolve, reject) => {
+                setTimeout(()=>{ 
+                    resolve(true)
+                    setCurrent(current+1);
+                },1000)
+            });
+          }}
         >
           {/* <ProFormRadio.Group
             name="type"
