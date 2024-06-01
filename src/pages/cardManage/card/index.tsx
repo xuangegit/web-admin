@@ -144,11 +144,11 @@ const CardPage: React.FC = () => {
                 items: [
                   {
                     key: '1',
-                    label: '导出当月',
+                    label: '导出当月数据',
                   },
                   {
                     key: '2',
-                    label: '导出历史',
+                    label: '导出历史数据',
                   },
                 ],
               }}

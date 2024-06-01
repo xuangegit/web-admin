@@ -78,12 +78,12 @@ const columns: ProColumns<Item>[] = [
     hideInSearch: true,
     copyable: true,
   },
-  {
-    title: '金额',
-    dataIndex: 'money',
-    hideInSearch: true,
+  // {
+  //   title: '金额',
+  //   dataIndex: 'money',
+  //   hideInSearch: true,
     
-  },
+  // },
   {
     title: '状态',
     dataIndex: 'state',

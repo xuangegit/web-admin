@@ -38,8 +38,8 @@ const Address: React.FC = () => {
           render: (_, record) => {
             return <Space>
               <Switch unCheckedChildren='设为默认' checkedChildren='取消默认'/>
-              <Button type="primary" onClick={()=>setEditModalConfig({visible:true,id:'3424'})}>编辑</Button>
-              <Button type="primary" danger>删除</Button>
+              <Button  size="small" type="text" onClick={()=>setEditModalConfig({visible:true,id:'3424'})}>编辑</Button>
+              <Button size="small" type="text" danger>删除</Button>
             </Space>
           }
         }]}
