@@ -14,7 +14,7 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { FormattedMessage, Helmet, SelectLang, useIntl, useModel } from '@umijs/max';
-import { Alert, Flex, message, Tabs } from 'antd';
+import { Alert, Flex, message, Tabs,Divider,theme,Space } from 'antd';
 import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
@@ -92,6 +92,7 @@ const LoginMessage: React.FC<{
 };
 
 const Login: React.FC = () => {
+  const { token } = theme.useToken();
   const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
   const { initialState, setInitialState } = useModel('@@initialState');
@@ -165,15 +166,39 @@ const Login: React.FC = () => {
         initialValues={{
           autoLogin: true,
         }}
-        actions={[
-          <FormattedMessage
-            key="loginWith"
-            id="pages.login.loginWith"
-            defaultMessage="其他登录方式"
+        // actions={[
+        //   <FormattedMessage
+        //     key="loginWith"
+        //     id="pages.login.loginWith"
+        //     defaultMessage="其他登录方式"
             
-          />,
-          <ActionIcons key="icons" />,
-        ]}
+        //   />,
+        //   <ActionIcons key="icons" />,
+        // ]}
+        actions={
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+            }}
+          >
+            <Divider plain>
+              <span
+                style={{
+                  color: token.colorTextPlaceholder,
+                  fontWeight: 'normal',
+                  fontSize: 14,
+                }}
+              >
+                其他登录方式
+              </span>
+            </Divider>
+            <Space align="center" size={24}>
+              <ActionIcons/>
+            </Space>
+          </div>}
         onFinish={async (values) => {
           await handleSubmit(values as API.LoginParams);
         }}

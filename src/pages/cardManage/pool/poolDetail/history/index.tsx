@@ -1,5 +1,3 @@
-import HeaderDropdown from '@/components/HeaderDropdown';
-
 import type { ActionType,  } from '@ant-design/pro-components';
 import {
   PageContainer,
@@ -11,14 +9,8 @@ import {ExportOutlined} from '@ant-design/icons'
 import {columns} from './config'
 import { rule } from '@/pages/cardManage/card/service';
 
-const historyList: React.FC = () => {
- 
+const HistoryList: React.FC = () => {
   const actionRef = useRef<ActionType>();
-  
-
-  
-  /** 国际化配置 */
-
   return (
     <PageContainer
       ghost
@@ -58,4 +50,4 @@ const historyList: React.FC = () => {
   );
 };
 
-export default historyList;
+export default HistoryList;

@@ -340,6 +340,12 @@ export default [
         path: '/account/settings',
         component: './account/settings',
       },
+      {
+        name: 'address',
+        icon: 'smile',
+        path: '/account/address',
+        component: './account/address',
+      },
     ],
   },
   {
