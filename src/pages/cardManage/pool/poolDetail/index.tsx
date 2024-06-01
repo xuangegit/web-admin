@@ -6,6 +6,7 @@ import dayjs from 'dayjs';
 import RenewalModal from './components/renewalModal';
 import AutoRenewalModal from './components/autoRenewalModal';
 import OffNetSetting from './components/offNetSetting';
+import TableList from './components/list'
 const PoolDetail: React.FC = () => {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate()
@@ -23,14 +24,16 @@ const PoolDetail: React.FC = () => {
         <PageContainer>
             <Card title={title2} extra={<Button type='link' onClick={()=>navigate('history')}>历史数据</Button>}>
                 <Flex gap={20} align='center'>
-                    <div>最近同步时间：{dayjs(new Date()).format('YYYY-MM-dd HH:mm:ss')}</div>
+                    <div>最近同步时间：{dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')}</div>
                     <Space>
                         <RenewalModal/>
                         <AutoRenewalModal/>
                         <OffNetSetting/>
                     </Space>
                 </Flex>
+                
             </Card>
+            <TableList/>
         </PageContainer>
     )
 }

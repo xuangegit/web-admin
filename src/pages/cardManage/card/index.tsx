@@ -84,6 +84,16 @@ const CardPage: React.FC = () => {
           setting: true,
           reload: false,
         }}
+        columnsState={{
+          persistenceKey: 'cardList',
+          persistenceType: 'localStorage',
+          // defaultValue: {
+          //   option: { fixed: 'right', disable: true },
+          // },
+          onChange(value) {
+            console.log('value: ', value);
+          },
+        }}
         toolBarRender={() => [
           <Button
             type="primary"

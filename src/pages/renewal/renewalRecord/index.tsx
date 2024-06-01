@@ -120,6 +120,7 @@ export default () => {
         columns={columns}
         actionRef={actionRef}
         cardBordered
+        
         request={async (params, sort, filter) => {
           console.log(sort, filter);
           console.log('params', params);
@@ -139,16 +140,7 @@ export default () => {
             total: 1,
           };
         }}
-        columnsState={{
-          persistenceKey: 'pro-table-singe-demos',
-          persistenceType: 'localStorage',
-          defaultValue: {
-            option: { fixed: 'right', disable: true },
-          },
-          onChange(value) {
-            console.log('value: ', value);
-          },
-        }}
+        
         rowKey="id"
         search={{
           labelWidth: 'auto',
@@ -159,6 +151,16 @@ export default () => {
             lg: 8,
             xl: 4,
             xxl: 4,
+          },
+        }}
+        columnsState={{
+          persistenceKey: 'renewalRecords',
+          persistenceType: 'localStorage',
+          defaultValue: {
+            option: { fixed: 'right', disable: true },
+          },
+          onChange(value) {
+            console.log('value: ', value);
           },
         }}
         options={false}

@@ -21,3 +21,8 @@ export enum TypeName {
     'variableRatePlan' = '修改套餐将在当前已有套餐结束后生效',
     'sms' = '增加物联网卡短信服务时长',
   }
+  export enum OperTypeNameEnum {
+    'cmcc' = '中国移动',
+    'cucc' = '中国联通',
+    'ctc'= '中国电信',
+  }

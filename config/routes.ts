@@ -68,7 +68,7 @@ export default [
         flatMenu:true,
         routes:[
           {
-            name: 'list',
+            name: 'pool',
             icon: 'smile',
             path: '/card/pool',
             component: '@/pages/cardManage/pool',

@@ -1,30 +1,21 @@
-import HeaderDropdown from '@/components/HeaderDropdown';
-
 import type { ActionType,  } from '@ant-design/pro-components';
 import {
-  PageContainer,
   ProTable,
 } from '@ant-design/pro-components';
 import { Button, Tooltip } from 'antd';
-import React, { useRef, useState } from 'react';
+import React, { useRef,useState  } from 'react';
 import {ExportOutlined} from '@ant-design/icons'
 import {columns} from './config'
 import { rule } from '@/pages/cardManage/card/service';
-
-const historyList: React.FC = () => {
- 
+import NetConfigModal from './netConfigModal';
+const HistoryList: React.FC = () => {
   const actionRef = useRef<ActionType>();
-  
-
-  
-  /** 国际化配置 */
-
+  const [visible, setVisible] = useState(false);
+  const [netConfig,setNetConfig] = useState({type:'open',visible:false})
   return (
-    <PageContainer
-      ghost
-      fixedHeader
-    >
+    <>
       <ProTable
+        style={{marginTop:10}}
         actionRef={actionRef}
         rowKey="key"
         search={{
@@ -39,9 +30,10 @@ const historyList: React.FC = () => {
           reload: false,
         }}
         toolBarRender={() => [
-          
+          <Button key="opennet" type='primary' onClick={() => setNetConfig({type:'open',visible:true})} >打开网络</Button>,
+          <Button key="closesnet" type='primary' onClick={() => setNetConfig({type:'close',visible:true})} >关闭网络</Button>,
           <Tooltip title="批量导出" key="export">
-             <Button type='primary' icon={<ExportOutlined />} onClick={() => {}} >导出</Button>
+             <Button key="export" type='primary' icon={<ExportOutlined />} onClick={() => {}} >导出</Button>
           </Tooltip>,
         ]}
         request={rule}
@@ -49,13 +41,10 @@ const historyList: React.FC = () => {
           x: 1000,
         }}
         columns={columns}
-       
       />
-      
-
-    
-    </PageContainer>
+      <NetConfigModal {...netConfig} onCancel={()=>setNetConfig({type:'',visible:false})} selectedRowsState={[]}/>
+    </>
   );
 };
 
-export default historyList;
+export default HistoryList;
