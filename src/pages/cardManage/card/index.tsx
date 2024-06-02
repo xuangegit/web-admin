@@ -23,7 +23,7 @@ import { getColumns } from './config';
 import type { CardListItem } from './data';
 import { useCard } from './hooks';
 import { rule } from './service';
-
+import ExportModal from './components/exportModal';
 const CardPage: React.FC = () => {
   const {
     currentRow,
@@ -148,7 +148,7 @@ const CardPage: React.FC = () => {
                   },
                   {
                     key: '2',
-                    label: '导出历史数据',
+                    label: <ExportModal/>,
                   },
                 ],
               }}

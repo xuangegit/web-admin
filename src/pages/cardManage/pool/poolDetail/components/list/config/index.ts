@@ -1,6 +1,13 @@
 
 
 export const columns = [
+  {
+    title: 'ICCID',
+    dataIndex: 'iccid',
+    key: 'iccid',
+    width:120,
+    // hideInSearch:true,
+  },
     {
     title: '时间',
     dataIndex: 'time',
@@ -10,24 +17,6 @@ export const columns = [
     width:120,
   },
   
-  {
-    title: '',
-    dataIndex: 'dateTimeRange',
-    key: 'time',
-    hideInTable:true,
-    valueType:'dateTimeRange',
-    Search:{
-        transform:(value:any)=>{
-            return value?{
-                startTime:value[0],
-                endTime:value[1]
-            }:undefined
-        }
-    },
-    fieldProps:{
-        placeholder:['开始时间','结束时间']
-    }
-  },
   
  
   

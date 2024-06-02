@@ -346,7 +346,19 @@ export default [
         path: '/account/address',
         component: './account/address',
       },
+      {
+        name: 'account',
+        icon: 'smile',
+        path: '/account/account',
+        component: './account/account',
+      },
     ],
+  },
+  {
+    path: 'download',
+    name:'download',
+    icon:'download',
+    component:'./download'
   },
   {
     path: '/',

@@ -22,6 +22,16 @@ const NotificationView: React.FC = () => {
         description: '待办任务将以站内信的形式通知',
         actions: [Action],
       },
+      {
+        title: '邮件消息',
+        description: '邮件消息将以站内信的形式通知',
+        actions: [Action],
+      },
+      {
+        title: '告警消息',
+        description: '告警消息将以站内信的形式通知',
+        actions: [Action],
+      },
     ];
   };
 
