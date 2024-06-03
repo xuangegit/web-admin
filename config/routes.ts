@@ -128,6 +128,28 @@ export default [
     ],
   },
   {
+    path:'/mall',
+    name:'mall',
+    icon:'shop',
+    routes:[
+      {
+        path:'/mall',
+        redirect:'/mall/purchase',
+      },
+      {
+        name:'purchase',
+        icon:'smile',
+        path:'/mall/purchase',
+        component:'./mall/purchase',
+      },
+      {
+        name:'order',
+        icon:'smile',
+        path:'/mall/order',
+        component:'./mall/order',
+      }]
+  },
+  {
     path: '/dashboard',
     name: 'dashboard',
     icon: 'dashboard',
