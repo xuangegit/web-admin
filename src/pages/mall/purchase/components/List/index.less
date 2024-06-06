@@ -1,0 +1,31 @@
+.listContainer{
+    padding:4px ;
+    height: 500px;
+    overflow-y: auto;
+      &::-webkit-scrollbar {
+        width: 10px; /* 设置滚动条的宽度 */
+      }
+       
+      /* 自定义滚动条滑块样式 */
+      &::-webkit-scrollbar-thumb {
+        background-color: #1890ff; /* 设置滑块的颜色 */
+        border-radius: 5px; /* 设置滑块的圆角 */
+      }
+       
+      /* 自定义滚动条轨道样式 */
+      &::-webkit-scrollbar-track {
+        background-color: #f0f0f0; /* 设置轨道的颜色 */
+      }
+}
+.listItem{
+    cursor: pointer;
+    height: 82px;
+    margin:10px 0;
+    padding: 10px 10px 30px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    line-height: 60px;
+    &:hover{
+        box-shadow: 0px 0px 3px #1890ff;
+    }
+}

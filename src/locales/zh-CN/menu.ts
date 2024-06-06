@@ -21,6 +21,7 @@ export default {
   'menu.renewal.list':'续费记录',
   'menu.mall': '商城管理',
   'menu.mall.purchase': '在线购卡',
+  'menu.mall.shopping-car': '购物车',
   'menu.mall.order': '订单管理',
   'menu.dashboard.analysis': '分析页',
   'menu.dashboard.monitor': '监控页',

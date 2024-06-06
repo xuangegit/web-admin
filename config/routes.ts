@@ -142,6 +142,13 @@ export default [
         path:'/mall/purchase',
         component:'./mall/purchase',
       },
+
+      {
+        name:'shopping-car',
+        icon:'smile',
+        path:'/mall/shopping-car',
+        component:'./mall/shoppingCar',
+      },
       {
         name:'order',
         icon:'smile',

@@ -1,9 +1,11 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
 import { PageContainer, ProFormCheckbox } from '@ant-design/pro-components';
-import { Card, Col, Form, Row, Select, Space, Tooltip,Checkbox } from 'antd';
+import { Card, Col, Form, Row, Select, Space, Tooltip,Checkbox} from 'antd';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
+import List from './components/List';
 import { categoryOptions } from './mock';
+import { priceData } from './mock';
 const spanConfig = {
     xs: 24,
     sm: 12,
@@ -181,19 +183,7 @@ export default () => {
             </div>
         } 
         bordered={false}>
-            Card content
-            fdasga
-            <br/>
-            fadf
-            <br/>
-            erwer
-            <br/>
-            werqawdga
-            <br/>
-            fadfa
-            <br/>
-            dfad
-            fadfaz
+            <List data={priceData.cmcc}></List>
 
         </Card>
         </Col>
@@ -206,7 +196,8 @@ export default () => {
             } 
             bordered={false}
         >
-            Card content
+            <List data={priceData.unicom}></List>
+
         </Card>
         </Col>
         <Col span={8} {...spanConfig}>
@@ -218,7 +209,7 @@ export default () => {
                 </div>
             } 
         >
-            Card content
+             <List data={priceData.chinanet}></List>
         </Card>
         </Col>
     </Row>

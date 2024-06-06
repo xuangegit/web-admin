@@ -38,6 +38,7 @@ export default {
   'menu.renewal.list':'Renewal Record',
   'menu.mall': 'Mall',
   'menu.mall.purchase': 'Purchase',
+  'menu.mall.shopping-car': 'Shopping Car',
   'menu.mall.order': 'Order List',
   'menu.list.search-list': 'Search List',
   'menu.list.search-list.articles': 'Search List(articles)',
