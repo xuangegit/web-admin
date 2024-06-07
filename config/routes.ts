@@ -150,6 +150,12 @@ export default [
         component:'./mall/shoppingCar',
       },
       {
+        name:'confirm-order',
+        icon:'smile',
+        path:'/mall/confirm-order',
+        component:'./mall/confirmOrder',
+      },
+      {
         name:'order',
         icon:'smile',
         path:'/mall/order',
