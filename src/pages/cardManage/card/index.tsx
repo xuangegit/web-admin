@@ -17,13 +17,13 @@ import {
 import { Button, Drawer, Tooltip } from 'antd';
 import React, { useRef, useState } from 'react';
 import AutoRenewalModal from './components/autoRenewalModal';
+import ExportModal from './components/exportModal';
 import ShutDownProtection from './components/shutdownProtection';
 import SmsModalForm from './components/SmsModalForm';
 import { getColumns } from './config';
 import type { CardListItem } from './data';
 import { useCard } from './hooks';
 import { rule } from './service';
-import ExportModal from './components/exportModal';
 const CardPage: React.FC = () => {
   const {
     currentRow,
@@ -84,6 +84,7 @@ const CardPage: React.FC = () => {
           setting: true,
           reload: false,
         }}
+        scroll={{ y: 400 }}
         columnsState={{
           persistenceKey: 'cardList',
           persistenceType: 'localStorage',
@@ -148,7 +149,7 @@ const CardPage: React.FC = () => {
                   },
                   {
                     key: '2',
-                    label: <ExportModal/>,
+                    label: <ExportModal />,
                   },
                 ],
               }}
@@ -159,9 +160,6 @@ const CardPage: React.FC = () => {
         ]}
         params={{ type: activeKey }}
         request={rule}
-        scroll={{
-          x: 1000,
-        }}
         columns={getColumns({ setCurrentRow, setShowDetail })}
         rowSelection={{
           onChange: (_, selectedRows) => {
@@ -260,7 +258,11 @@ const CardPage: React.FC = () => {
         onClose={() => setAutoRenewallOpen(false)}
         data={selectedRowsState}
       />
-      <ShutDownProtection visible={shutDownVisible} onCancel={() => setShutDownVisible(false)} selectedRowsState={selectedRowsState}/>
+      <ShutDownProtection
+        visible={shutDownVisible}
+        onCancel={() => setShutDownVisible(false)}
+        selectedRowsState={selectedRowsState}
+      />
     </PageContainer>
   );
 };

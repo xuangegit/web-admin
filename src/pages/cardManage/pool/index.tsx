@@ -1,9 +1,9 @@
 import { ProCard } from '@ant-design/pro-components';
 import { PageContainer } from '@ant-design/pro-layout';
-import { Button, Card, ConfigProvider, List, Progress, Statistic, Tag } from 'antd';
-import AlarmModal from './components/AlarmModal';
-import React from 'react';
 import { useNavigate } from '@umijs/max';
+import { Button, Card, ConfigProvider, List, Progress, Statistic, Tag } from 'antd';
+import React from 'react';
+import AlarmModal from './components/AlarmModal';
 
 const { Divider } = ProCard;
 const data = ['移动流量池', '移动-300M', '移动-100M', '联通流量池', '联通-100M'].map((item) => ({
@@ -68,9 +68,7 @@ const PoolPage: React.FC = () => {
       fixedHeader
       header={{
         title: '流量池',
-        extra: [
-          <AlarmModal key='alarm'/>,
-        ],
+        extra: [<AlarmModal key="alarm" />],
       }}
     >
       <List<any>
@@ -99,10 +97,16 @@ const PoolPage: React.FC = () => {
                   },
                 }}
                 hoverable
-               
                 // bordered
                 title={item.title}
-                extra={<Button type="link" onClick={()=>navigate(`/card/pool/detail?title=${item.title}`)}>详情</Button>}
+                extra={
+                  <Button
+                    type="link"
+                    onClick={() => navigate(`/card/pool/detail?title=${item.title}`)}
+                  >
+                    详情
+                  </Button>
+                }
               >
                 {item.content}
               </Card>

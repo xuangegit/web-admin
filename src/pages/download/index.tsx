@@ -79,7 +79,7 @@ const DownLoad: React.FC = () => {
             dataIndex: 'option',
             key: 'option',
             fixed: 'right',
-            width:100,
+            width: 100,
             render: (text) => {
               return (
                 <Space>

@@ -14,7 +14,7 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { FormattedMessage, Helmet, SelectLang, useIntl, useModel } from '@umijs/max';
-import { Alert, Flex, message, Tabs,Divider,theme,Space } from 'antd';
+import { Alert, Divider, Flex, message, Space, Tabs, theme } from 'antd';
 import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
@@ -38,7 +38,7 @@ const useStyles = createStyles(({ token }) => {
       height: 42,
       lineHeight: '42px',
       position: 'fixed',
-      zIndex:1,
+      zIndex: 1,
       right: 16,
       borderRadius: token.borderRadius,
       ':hover': {
@@ -46,10 +46,10 @@ const useStyles = createStyles(({ token }) => {
       },
     },
     container: {
-      minWidth:500,
+      minWidth: 500,
       height: '100vh',
       overflow: 'auto',
-      background:'url("/icons/loginBg.jpg")'
+      background: 'url("/icons/loginBg.jpg")',
     },
   };
 });
@@ -159,7 +159,7 @@ const Login: React.FC = () => {
           backgroundColor: '#fff',
           backdropFilter: 'blur(4px)',
         }}
-        backgroundImageUrl='/icons/loginBg.jpg'
+        backgroundImageUrl="/icons/loginBg.jpg"
         logo={<img alt="logo" src="/logo.svg" />}
         title="物联网平台"
         subTitle={intl.formatMessage({ id: 'pages.layouts.userLayout.title' })}
@@ -171,7 +171,7 @@ const Login: React.FC = () => {
         //     key="loginWith"
         //     id="pages.login.loginWith"
         //     defaultMessage="其他登录方式"
-            
+
         //   />,
         //   <ActionIcons key="icons" />,
         // ]}
@@ -196,9 +196,10 @@ const Login: React.FC = () => {
               </span>
             </Divider>
             <Space align="center" size={24}>
-              <ActionIcons/>
+              <ActionIcons />
             </Space>
-          </div>}
+          </div>
+        }
         onFinish={async (values) => {
           await handleSubmit(values as API.LoginParams);
         }}
@@ -393,9 +394,7 @@ const Login: React.FC = () => {
             <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
           </a>
         </Flex>
-        
       </LoginFormPage>
-      
     </div>
   );
 };

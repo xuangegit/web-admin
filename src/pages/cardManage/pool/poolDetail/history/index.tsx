@@ -1,21 +1,15 @@
-import type { ActionType,  } from '@ant-design/pro-components';
-import {
-  PageContainer,
-  ProTable,
-} from '@ant-design/pro-components';
-import { Button, Tooltip } from 'antd';
-import React, { useRef, useState } from 'react';
-import {ExportOutlined} from '@ant-design/icons'
-import {columns} from './config'
 import { rule } from '@/pages/cardManage/card/service';
+import { ExportOutlined } from '@ant-design/icons';
+import type { ActionType } from '@ant-design/pro-components';
+import { PageContainer, ProTable } from '@ant-design/pro-components';
+import { Button, Tooltip } from 'antd';
+import React, { useRef } from 'react';
+import { columns } from './config';
 
 const HistoryList: React.FC = () => {
   const actionRef = useRef<ActionType>();
   return (
-    <PageContainer
-      ghost
-      fixedHeader
-    >
+    <PageContainer ghost fixedHeader>
       <ProTable
         actionRef={actionRef}
         rowKey="key"
@@ -31,9 +25,10 @@ const HistoryList: React.FC = () => {
           reload: false,
         }}
         toolBarRender={() => [
-          
           <Tooltip title="批量导出" key="export">
-             <Button type='primary' icon={<ExportOutlined />} onClick={() => {}} >导出</Button>
+            <Button type="primary" icon={<ExportOutlined />} onClick={() => {}}>
+              导出
+            </Button>
           </Tooltip>,
         ]}
         request={rule}
@@ -41,11 +36,7 @@ const HistoryList: React.FC = () => {
           x: 1000,
         }}
         columns={columns}
-       
       />
-      
-
-    
     </PageContainer>
   );
 };

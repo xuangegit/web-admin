@@ -1,35 +1,34 @@
-
 export type CardListItem = {
-  iccid?: number|string;
+  iccid?: number | string;
   phone?: string;
   imsi?: string;
-  type?: string; 
-  apn?:string;
-  apnType?:string|number;
-  locationService?: string|number;
+  type?: string;
+  apn?: string;
+  apnType?: string | number;
+  locationService?: string | number;
   netAddService?: string;
   netAddServiceType?: string;
-  automaticRenewal?:string; //自动续费
-  automaticRenewalType?:string|number;
+  automaticRenewal?: string; //自动续费
+  automaticRenewalType?: string | number;
   netStatus?: string;
   pool?: string; //流量池
-  authentication?:string;//实名状态
+  authentication?: string; //实名状态
   deviceStatus?: string; //设备状态
-  remainingShutdownMonths?:string;//剩余停号保机月数
-  deviceNum?:string;//设备号码
-  monthlyConsumption?:string;//本月用量
-  packageSpecification?:string;//套餐规格
-  packageTotal?:string;//套餐总量
-  packageUsed?:string;//套餐已用
-  packageSurplus?:string;//套餐剩余
-  testExpirationTime?:string;//测试期过期时间
-  quietPeriod?:string;//沉默期
-  activationTime?:string;//激活时间
-  smsServiceExpires?:string;//短信服务过期时间
-  remark?:string; //备注
-}&Partial<TableListItem>;
+  remainingShutdownMonths?: string; //剩余停号保机月数
+  deviceNum?: string; //设备号码
+  monthlyConsumption?: string; //本月用量
+  packageSpecification?: string; //套餐规格
+  packageTotal?: string; //套餐总量
+  packageUsed?: string; //套餐已用
+  packageSurplus?: string; //套餐剩余
+  testExpirationTime?: string; //测试期过期时间
+  quietPeriod?: string; //沉默期
+  activationTime?: string; //激活时间
+  smsServiceExpires?: string; //短信服务过期时间
+  remark?: string; //备注
+} & Partial<TableListItem>;
 export type TableListItem = {
-  type?:string;
+  type?: string;
   key: number;
   disabled?: boolean;
   href: string;
@@ -42,9 +41,9 @@ export type TableListItem = {
   updatedAt: Date;
   createdAt: Date;
   progress: number;
-} 
+};
 export type TableListPagination = {
-  type?:string;
+  type?: string;
   total: number;
   pageSize: number;
   current: number;
@@ -56,7 +55,7 @@ export type TableListData = {
 };
 
 export type TableListParams = {
-  type?:string;
+  type?: string;
   status?: string;
   name?: string;
   desc?: string;

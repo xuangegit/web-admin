@@ -1,6 +1,4 @@
-﻿import component from "@/locales/bn-BD/component";
-
-/**
+﻿/**
  * @name umi 的路由配置
  * @description 只支持 path,component,routes,redirect,wrappers,name,icon 的配置
  * @param path  path 只支持两种占位符配置，第一种是动态参数 :id 的形式，第二种是 * 通配符，通配符只能出现路由字符串的最后。
@@ -65,8 +63,8 @@ export default [
         icon: 'smile',
         // path: '/card/pool',
         // redirect: '/card/pool/list',
-        flatMenu:true,
-        routes:[
+        flatMenu: true,
+        routes: [
           {
             name: 'pool',
             icon: 'smile',
@@ -74,18 +72,18 @@ export default [
             component: '@/pages/cardManage/pool',
           },
           {
-            name:'detail',
-            path:'/card/pool/detail',
-            hideInMenu:true,
+            name: 'detail',
+            path: '/card/pool/detail',
+            hideInMenu: true,
             component: '@/pages/cardManage/pool/poolDetail',
           },
           {
-            name:'detail-history',
-            path:'/card/pool/detail/history',
-            hideInMenu:true,
+            name: 'detail-history',
+            path: '/card/pool/detail/history',
+            hideInMenu: true,
             component: '@/pages/cardManage/pool/poolDetail/history',
-          }
-        ]
+          },
+        ],
       },
       {
         name: 'sms',
@@ -93,7 +91,6 @@ export default [
         path: '/card/sms',
         component: './cardManage/sms',
       },
-      
     ],
   },
   {
@@ -124,43 +121,43 @@ export default [
         path: 'list',
         component: '@/pages/renewal/renewalRecord',
       },
-      
     ],
   },
   {
-    path:'/mall',
-    name:'mall',
-    icon:'shop',
-    routes:[
+    path: '/mall',
+    name: 'mall',
+    icon: 'shop',
+    routes: [
       {
-        path:'/mall',
-        redirect:'/mall/purchase',
+        path: '/mall',
+        redirect: '/mall/purchase',
       },
       {
-        name:'purchase',
-        icon:'smile',
-        path:'/mall/purchase',
-        component:'./mall/purchase',
+        name: 'purchase',
+        icon: 'smile',
+        path: '/mall/purchase',
+        component: './mall/purchase',
       },
 
       {
-        name:'shopping-car',
-        icon:'smile',
-        path:'/mall/shopping-car',
-        component:'./mall/shoppingCar',
+        name: 'shopping-car',
+        icon: 'smile',
+        path: '/mall/shopping-car',
+        component: './mall/shoppingCar',
       },
       {
-        name:'confirm-order',
-        icon:'smile',
-        path:'/mall/confirm-order',
-        component:'./mall/confirmOrder',
+        name: 'confirm-order',
+        icon: 'smile',
+        path: '/mall/confirm-order',
+        component: './mall/confirmOrder',
       },
       {
-        name:'order',
-        icon:'smile',
-        path:'/mall/order',
-        component:'./mall/order',
-      }]
+        name: 'order',
+        icon: 'smile',
+        path: '/mall/order',
+        component: './mall/order',
+      },
+    ],
   },
   {
     path: '/dashboard',
@@ -391,9 +388,9 @@ export default [
   },
   {
     path: 'download',
-    name:'download',
-    icon:'download',
-    component:'./download'
+    name: 'download',
+    icon: 'download',
+    component: './download',
   },
   {
     path: '/',

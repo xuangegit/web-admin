@@ -4,10 +4,10 @@ import {
   ProFormTextArea,
   StepsForm,
 } from '@ant-design/pro-components';
-import { Modal ,Alert} from 'antd';
-import React ,{useRef}from 'react';
-import type { TableListItem } from '../data';
 import { useNavigate } from '@umijs/max';
+import { Alert, Modal } from 'antd';
+import React from 'react';
+import type { TableListItem } from '../data';
 export type FormValueType = {
   target?: string;
   template?: string;
@@ -61,21 +61,17 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
           name: props?.values?.baseInfo,
           type: 0,
         }}
-        layout='horizontal'
-        labelCol={
-          {
-            xs: 24,
-            sm: 7,
-            md:4,
-          }
-        }
-        wrapperCol={
-          {
-            xs: 24,
-            sm: 13,
-            md: 20,
-          }
-        }
+        layout="horizontal"
+        labelCol={{
+          xs: 24,
+          sm: 7,
+          md: 4,
+        }}
+        wrapperCol={{
+          xs: 24,
+          sm: 13,
+          md: 20,
+        }}
         title="基本信息"
       >
         {/* <ProFormRadio.Group
@@ -110,29 +106,24 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
       </StepsForm.StepForm>
       <StepsForm.StepForm
         layout="horizontal"
-        name='sms'
-        labelCol={
-          {
-            xs: 24,
-            sm: 7,
-            md:4,
-          }
-        }
-        wrapperCol={
-          {
-            xs: 24,
-            sm: 13,
-            md: 20,
-          }
-        }
-
+        name="sms"
+        labelCol={{
+          xs: 24,
+          sm: 7,
+          md: 4,
+        }}
+        wrapperCol={{
+          xs: 24,
+          sm: 13,
+          md: 20,
+        }}
         initialValues={{
           target: ['0', '1'],
           template: '0',
         }}
         title="短信发送"
       >
-        <ProFormItem label="ICCID" tooltip="这里只显示有效的iccid"  required>
+        <ProFormItem label="ICCID" tooltip="这里只显示有效的iccid" required>
           <div
             style={{
               border: '1px solid #ccc',
@@ -190,27 +181,39 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
               ]}
             />
           </div>
-          <Alert message='当前有效ICCID8个'></Alert>
+          <Alert message="当前有效ICCID8个"></Alert>
         </ProFormItem>
-        
-        <ProFormItem  label="短信内容" required>
+
+        <ProFormItem label="短信内容" required>
           <ProFormTextArea
             name="smsContent"
-            rules={[{required: true, message: '请输入短信内容'}]}
-            placeholder='每64个字增加一条短信计数，内容长度不能超过160'
+            rules={[{ required: true, message: '请输入短信内容' }]}
+            placeholder="每64个字增加一条短信计数，内容长度不能超过160"
             fieldProps={{
               count: {
-                max:160,
+                max: 160,
                 // show:true,
-                show:({count,maxLength}: { value: string; count: number; maxLength?: number })=>{
-                  return <div style={{fontWeight:'bold'}}>
-                    {`${count}/${maxLength}，${Math.ceil(count/64)}条`}
-                  </div>
-                }
+                show: ({
+                  count,
+                  maxLength,
+                }: {
+                  value: string;
+                  count: number;
+                  maxLength?: number;
+                }) => {
+                  return (
+                    <div style={{ fontWeight: 'bold' }}>
+                      {`${count}/${maxLength}，${Math.ceil(count / 64)}条`}
+                    </div>
+                  );
+                },
               },
             }}
           />
-          <Alert type='warning'  message='中国移动物联网卡在短信内容有中文时发送前会带有如【xxxxxxxx】的签名字样。'></Alert>
+          <Alert
+            type="warning"
+            message="中国移动物联网卡在短信内容有中文时发送前会带有如【xxxxxxxx】的签名字样。"
+          ></Alert>
         </ProFormItem>
         {/* <ProFormSelect
           name="template"
@@ -221,12 +224,14 @@ const UpdateForm: React.FC<UpdateFormProps> = (props) => {
             1: '规则模板二',
           }}
         /> */}
-        <ProFormItem label='应付金额'>
-          <span style={{color:'red',fontWeight:'bold'}}>￥140.00</span>
+        <ProFormItem label="应付金额">
+          <span style={{ color: 'red', fontWeight: 'bold' }}>￥140.00</span>
         </ProFormItem>
-        <ProFormItem label='账户余额'>
-          <span style={{color:'#1890ff',fontWeight:'bold',marginRight:8}}>￥80</span> 
-          <span>余额不足！<a onClick={()=>navigate('/recharge')}>去充值</a></span>
+        <ProFormItem label="账户余额">
+          <span style={{ color: '#1890ff', fontWeight: 'bold', marginRight: 8 }}>￥80</span>
+          <span>
+            余额不足！<a onClick={() => navigate('/recharge')}>去充值</a>
+          </span>
         </ProFormItem>
       </StepsForm.StepForm>
     </StepsForm>

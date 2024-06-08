@@ -1,6 +1,5 @@
 import { Footer } from '@/components';
-import { login } from '@/services/ant-design-pro/login';
-import { getFakeCaptcha } from '@/services/ant-design-pro/login';
+import { getFakeCaptcha, login } from '@/services/ant-design-pro/login';
 import {
   AlipayCircleOutlined,
   LockOutlined,
@@ -16,7 +15,7 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { FormattedMessage, Helmet, SelectLang, useIntl, useModel } from '@umijs/max';
-import { Alert, message, Tabs,Flex } from 'antd';
+import { Alert, Flex, message, Tabs } from 'antd';
 import { createStyles } from 'antd-style';
 import React, { useState } from 'react';
 import { flushSync } from 'react-dom';
@@ -51,8 +50,7 @@ const useStyles = createStyles(({ token }) => {
       flexDirection: 'column',
       height: '100vh',
       overflow: 'auto',
-      backgroundImage:
-        "url('/icons/loginBg.jpg')",
+      backgroundImage: "url('/icons/loginBg.jpg')",
       backgroundSize: '100% 100%',
     },
   };
@@ -159,15 +157,13 @@ const Login: React.FC = () => {
         style={{
           flex: '1',
           padding: '32px 0',
-          
         }}
       >
         <LoginForm
-          style={{background:"#fff"}}
+          style={{ background: '#fff' }}
           contentStyle={{
             minWidth: 280,
             maxWidth: '75vw',
-           
           }}
           logo={<img alt="logo" src="/logo.svg" />}
           title="物联网平台"
@@ -364,14 +360,16 @@ const Login: React.FC = () => {
               <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
             </a> */}
           </div>
-          <Flex style={{
+          <Flex
+            style={{
               marginBottom: 24,
             }}
-            justify='space-between'
-            >
-            <div>没有账号？<a onClick={()=>window.location.href='/user/register'}>去注册</a></div>
-            <a
-            >
+            justify="space-between"
+          >
+            <div>
+              没有账号？<a onClick={() => (window.location.href = '/user/register')}>去注册</a>
+            </div>
+            <a>
               <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
             </a>
           </Flex>

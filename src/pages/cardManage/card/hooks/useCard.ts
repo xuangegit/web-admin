@@ -8,7 +8,7 @@ const useCard = () => {
   const [autoRenewalOpen, setAutoRenewallOpen] = useState<boolean>(false);
   const [renewalstepOne, setRenewalStepOne] = useState<boolean>(false);
   const [renewalstepTwo, setRenewalStepTwo] = useState<boolean>(false);
-  const [shutDownVisible,setShutDownVisible] = useState<boolean>(false); //停机保号
+  const [shutDownVisible, setShutDownVisible] = useState<boolean>(false); //停机保号
   return {
     currentRow,
     setCurrentRow,
@@ -25,7 +25,7 @@ const useCard = () => {
     renewalstepTwo,
     setRenewalStepTwo,
     shutDownVisible,
-    setShutDownVisible
+    setShutDownVisible,
   };
 };
 export default useCard;

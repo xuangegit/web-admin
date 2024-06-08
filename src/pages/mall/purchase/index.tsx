@@ -1,19 +1,18 @@
 import { InfoCircleOutlined } from '@ant-design/icons';
-import { PageContainer, ProFormCheckbox } from '@ant-design/pro-components';
-import { Card, Col, Form, Row, Select, Space, Tooltip,Checkbox} from 'antd';
+import { PageContainer } from '@ant-design/pro-components';
+import { Card, Checkbox, Col, Form, Row, Space, Tooltip } from 'antd';
+import List from './components/List';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
-import List from './components/List';
-import { categoryOptions } from './mock';
-import { priceData } from './mock';
+import { categoryOptions, priceData } from './mock';
 const spanConfig = {
-    xs: 24,
-    sm: 12,
-    md: 12,
-    lg: 8,
-    xl: 8,
-    xxl: 8,
-  };
+  xs: 24,
+  sm: 12,
+  md: 12,
+  lg: 8,
+  xl: 8,
+  xxl: 8,
+};
 
 const FormItem = Form.Item;
 const owners = [
@@ -69,7 +68,7 @@ export default () => {
     },
   };
   return (
-    <PageContainer>
+    <PageContainer fixedHeader>
       <Card bordered={false}>
         <Form
           layout="inline"
@@ -119,20 +118,16 @@ export default () => {
           </StandardFormRow>
           <StandardFormRow title="网络" block last>
             <FormItem name="network">
-              <Checkbox.Group >
+              <Checkbox.Group>
                 <Space>
-                  <Checkbox value={1}>
-                    公网卡
-                  </Checkbox>
+                  <Checkbox value={1}>公网卡</Checkbox>
                   <Checkbox value={2}>
                     公网白名单 &nbsp;
                     <Tooltip title="所有可以做公网白名单的套餐，包括公网卡和专网卡">
-                        <InfoCircleOutlined />
+                      <InfoCircleOutlined />
                     </Tooltip>
                   </Checkbox>
-                  <Checkbox value={3}>
-                    专网卡(VPDN卡)
-                  </Checkbox>
+                  <Checkbox value={3}>专网卡(VPDN卡)</Checkbox>
                 </Space>
               </Checkbox.Group>
             </FormItem>
@@ -174,45 +169,45 @@ export default () => {
           </StandardFormRow> */}
         </Form>
       </Card>
-      <Row gutter={[12,12]} style={{marginTop: 10}}>
+      <Row gutter={[12, 12]} style={{ marginTop: 10 }}>
         <Col span={8} {...spanConfig}>
-        <Card 
-        title={
-            <div style={{display: 'flex', alignItems: 'center'}}>
-                <img src='/icons/zhongguoyidong.svg' style={{marginRight: 10}} width='20px' /> 中国移动
-            </div>
-        } 
-        bordered={false}>
+          <Card
+            title={
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/icons/zhongguoyidong.svg" style={{ marginRight: 10 }} width="20px" />{' '}
+                中国移动
+              </div>
+            }
+            bordered={false}
+          >
             <List data={priceData.cmcc}></List>
-
-        </Card>
+          </Card>
         </Col>
         <Col span={8} {...spanConfig}>
-        <Card 
+          <Card
             title={
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                    <img src='/icons/liantong.svg' style={{marginRight: 10}} width='20px' /> 中国联通
-                </div>
-            } 
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/icons/liantong.svg" style={{ marginRight: 10 }} width="20px" /> 中国联通
+              </div>
+            }
             bordered={false}
-        >
+          >
             <List data={priceData.unicom}></List>
-
-        </Card>
+          </Card>
         </Col>
         <Col span={8} {...spanConfig}>
-        <Card 
+          <Card
             bordered={false}
             title={
-                <div style={{display: 'flex', alignItems: 'center'}}>
-                    <img src='/icons/dianxin.svg' style={{marginRight: 10}} width='20px' /> 中国电信
-                </div>
-            } 
-        >
-             <List data={priceData.chinanet}></List>
-        </Card>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <img src="/icons/dianxin.svg" style={{ marginRight: 10 }} width="20px" /> 中国电信
+              </div>
+            }
+          >
+            <List data={priceData.chinanet}></List>
+          </Card>
         </Col>
-    </Row>
+      </Row>
     </PageContainer>
   );
 };

@@ -7,19 +7,19 @@ const Balance: React.FC = () => {
     <div>
       <Flex align="center" gap={10}>
         <div>
-          当前余额<span style={{ fontSize: 16, fontWeight: 'bold',marginLeft:16 }}>4.52元</span>
+          当前余额<span style={{ fontSize: 16, fontWeight: 'bold', marginLeft: 16 }}>4.52元</span>
         </div>
         <div>
           <Button type="primary">立即充值</Button>
         </div>
-        <BalanceAlarm/>
+        <BalanceAlarm />
       </Flex>
       <Divider />
       <ProTable
-      ghost
+        ghost
         headerTitle="交易记录"
         rowKey="key"
-          search={{labelWidth:0}}
+        search={{ labelWidth: 0 }}
         dateFormatter="string"
         options={false}
         columns={[
@@ -35,7 +35,7 @@ const Balance: React.FC = () => {
             fieldProps: {
               placeholder: ['开始时间', '结束时间'],
             },
-            colSize:1.5,
+            colSize: 1.5,
             search: {
               transform: (value) => {
                 return value
@@ -59,7 +59,7 @@ const Balance: React.FC = () => {
             dataIndex: 'type',
             key: 'type',
             valueType: 'select',
-            colSize:0.5,
+            colSize: 0.5,
             formItemProps: {
               label: '',
             },

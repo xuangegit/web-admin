@@ -1,5 +1,4 @@
 import { ModalForm, ProFormDatePicker } from '@ant-design/pro-components';
-import { Button } from 'antd';
 import dayjs from 'dayjs';
 import React from 'react';
 const ExportModal: React.FC = () => {
@@ -15,10 +14,10 @@ const ExportModal: React.FC = () => {
       <ProFormDatePicker
         name="date"
         fieldProps={{
-          format:'YYYY-MM',
-          picker:"month",
+          format: 'YYYY-MM',
+          picker: 'month',
           disabledDate: (current) => {
-            return current && current >dayjs().endOf('day');
+            return current && current > dayjs().endOf('day');
           },
         }}
       />

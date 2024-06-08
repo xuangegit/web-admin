@@ -11,7 +11,7 @@ import React from 'react';
 const AddOrEdit: React.FC = (props: any) => {
   return (
     <ModalForm
-    width={600}
+      width={600}
       open={props?.visible}
       title={props?.id ? '编辑收货地址' : '新增收货地址'}
       modalProps={{

@@ -15,7 +15,9 @@ const RenewalModal = () => {
     >
       <ProFormSwitch label="自动续费流量池叠加包" name="flag" />
       <Flex vertical>
-        <div>1.开启功能后，流量池使用量达到100%时，会自动续费流量池叠加包保证流量池卡正常使用。 </div>
+        <div>
+          1.开启功能后，流量池使用量达到100%时，会自动续费流量池叠加包保证流量池卡正常使用。{' '}
+        </div>
         <div>2.账户余额为负时，无法自动续费。</div>
       </Flex>
     </ModalForm>

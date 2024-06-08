@@ -21,8 +21,8 @@ const PackageModalForm: React.FC<any> = (props) => {
       md: 20,
     },
   };
-  const {  open, onClose, info } = props;
-  const { isAllowAutoRecharge,iccids } = info;
+  const { open, onClose, info } = props;
+  const { isAllowAutoRecharge, iccids } = info;
 
   return (
     <ModalForm

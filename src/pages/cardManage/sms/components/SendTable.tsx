@@ -21,7 +21,7 @@ type Item = {
   state: string | number;
   money: number;
   smsContent: string;
-  operateTime: string|Date;
+  operateTime: string | Date;
   closed_at?: string;
 };
 
@@ -44,9 +44,8 @@ const columns: ProColumns<Item>[] = [
   {
     title: '操作时间',
     dataIndex: 'operateTime',
-    valueType:'dateTime',
-    hideInSearch:true,
-   
+    valueType: 'dateTime',
+    hideInSearch: true,
   },
   {
     title: '操作时间',
@@ -55,16 +54,16 @@ const columns: ProColumns<Item>[] = [
     formItemProps: {
       label: '',
     },
-    colSize:1.5,
+    colSize: 1.5,
     fieldProps: {
-      placeholder:['开始时间','结束时间']
+      placeholder: ['开始时间', '结束时间'],
     },
     search: {
       transform: (value) => {
         return value && value.length ? { startTime: value[0], endTime: value[1] } : undefined;
       },
     },
-    hideInTable:true,
+    hideInTable: true,
   },
   {
     title: '接收号码',
@@ -82,21 +81,21 @@ const columns: ProColumns<Item>[] = [
   //   title: '金额',
   //   dataIndex: 'money',
   //   hideInSearch: true,
-    
+
   // },
   {
     title: '状态',
     dataIndex: 'state',
     filters: true,
     onFilter: true,
-    formItemProps:{
-        label:''
+    formItemProps: {
+      label: '',
     },
-    fieldProps:{
-        placeholder:'状态'
+    fieldProps: {
+      placeholder: '状态',
     },
     valueType: 'select',
-    
+
     valueEnum: {
       all: { text: '全部' },
       fail: {
@@ -131,7 +130,7 @@ export default () => {
               smsContent: '短信内容',
               phone: '16732098345',
               money: 3.5,
-              state:'success'
+              state: 'success',
             },
           ],
           total: 1,
@@ -150,17 +149,16 @@ export default () => {
       rowKey="id"
       search={{
         labelWidth: 'auto',
-        span:{
-            xs: 24,
-            sm: 16,
-            md: 10,
-            lg: 8,
-            xl: 4,
-            xxl: 4,
-        }
-        
+        span: {
+          xs: 24,
+          sm: 16,
+          md: 10,
+          lg: 8,
+          xl: 4,
+          xxl: 4,
+        },
       }}
-      options={{setting:true}}
+      options={{ setting: true }}
       form={{
         // 由于配置了 transform，提交的参与与定义的不同这里需要转化一下
         syncToUrl: (values, type) => {

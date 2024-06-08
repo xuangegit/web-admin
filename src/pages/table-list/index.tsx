@@ -13,13 +13,13 @@ import CreateForm from './components/CreateForm';
 import UpdateForm from './components/UpdateForm';
 
 const TableList: React.FC = () => {
-  console.log(111)
+  console.log(111);
   const actionRef = useRef<ActionType>();
 
   const [showDetail, setShowDetail] = useState<boolean>(false);
   const [currentRow, setCurrentRow] = useState<API.RuleListItem>();
   const [selectedRowsState, setSelectedRows] = useState<API.RuleListItem[]>([]);
-  const [activeKey,setActiveKey] =useState('1')
+  const [activeKey, setActiveKey] = useState('1');
   /**
    * @en-US International configuration
    * @zh-CN 国际化配置
@@ -207,30 +207,26 @@ const TableList: React.FC = () => {
           id: 'pages.searchTable.title',
           defaultMessage: 'Enquiry form',
         })}
-        params={{activeKey}}
+        params={{ activeKey }}
         actionRef={actionRef}
         rowKey="key"
         search={{
           labelWidth: 120,
         }}
-       
-       
-        
-        
         toolbar={{
-          multipleLine:true,
-          tabs:{
+          multipleLine: true,
+          tabs: {
             activeKey,
-              items:[
-                {key:'1',tab:'tab1'},
-                {key:'2',tab:'tab2'}
-              ],
-              onChange:(key:string)=>{
-                setActiveKey(key)
-              }
-          }}
-        }
-        options={{reload:false,fullScreen:true}}
+            items: [
+              { key: '1', tab: 'tab1' },
+              { key: '2', tab: 'tab2' },
+            ],
+            onChange: (key: string) => {
+              setActiveKey(key);
+            },
+          },
+        }}
+        options={{ reload: false, fullScreen: true }}
         toolBarRender={(active) => [<CreateForm key="create" reload={actionRef.current?.reload} />]}
         request={rule}
         columns={columns}

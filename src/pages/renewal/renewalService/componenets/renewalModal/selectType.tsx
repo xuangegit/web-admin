@@ -1,22 +1,22 @@
 import { ModalForm, ProCard } from '@ant-design/pro-components';
-import { Button, Flex,Divider,Form } from 'antd';
+import { Button, Divider, Flex, Form } from 'antd';
 import React, { useMemo, useRef, useState } from 'react';
-import styles from './index.module.less'
-import {TypeName,TypeDes} from '../../interface.d'
+import { TypeDes, TypeName } from '../../interface.d';
 import FinalRenew from '../finalRenew';
-type SelectTypeProps = {  
+import styles from './index.module.less';
+type SelectTypeProps = {
   open: boolean;
-  onClose:()=>void,
-  onOk?:()=>void,
+  onClose: () => void;
+  onOk?: () => void;
 };
 
 const SelectType: React.FC<SelectTypeProps> = (props) => {
-  const [finalOpen,setFinalOpen] =useState(false);
-  const [type,setType] = useState('')
-  const [info,setInfo] = useState<any>({})
-  const {open,onClose } = props;
+  const [finalOpen, setFinalOpen] = useState(false);
+  const [type, setType] = useState('');
+  const [info, setInfo] = useState<any>({});
+  const { open, onClose } = props;
   const formRef = useRef();
-  const [form] =Form.useForm()
+  const [form] = Form.useForm();
   const [data, setData] = useState<any>({
     package: {},
     sms: {
@@ -210,8 +210,8 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
       child.info = [];
       if (childKeys.length > 0) {
         for (let i = 0; i < childKeys.length; i++) {
-          let secondChild = child[childKeys[i]]||{};
-          console.log('secondChild',secondChild)
+          let secondChild = child[childKeys[i]] || {};
+          console.log('secondChild', secondChild);
           secondChild.size = secondChild?.iccids?.length || 0;
           size += secondChild.size;
           child.info.push({ ...secondChild, key: childKeys[i] });
@@ -223,60 +223,77 @@ const SelectType: React.FC<SelectTypeProps> = (props) => {
     console.log('result', result);
     return result;
   }, [data]);
-  const GotoFinal = (type:string,info:any)=>{ 
-    console.log('type',type);
-    console.log('info',info)
+  const GotoFinal = (type: string, info: any) => {
+    console.log('type', type);
+    console.log('info', info);
     onClose();
-    setType(type)
+    setType(type);
     setInfo(info);
     setFinalOpen(true);
-  }
+  };
   return (
     <>
-    <ModalForm
-      form={form}
-      formRef={formRef}
-      modalProps={{ onCancel:onClose,destroyOnClose:true }}
-      title="续费"
-      width={1200}
-      open={open}
-      submitter={false}
-      onFinish={async () => {
-        onClose();
-        // return true;
-      }}
-    >
-      <Flex gap={10}>
-        {list?.map((item: any) => (
-          <ProCard key={item.key} title={item.name} hoverable={item.size} bordered headerBordered  style={{
-            backgroundColor: item.size?'transparent':"#ddd",width:"25%"
-          }}>
-            <div className={styles.desc}>{item.desc}</div>
-            <div className={styles.cardInfo}>
-              {item?.size && <h3>共{item.size}张</h3>}
-              <div>物联网卡{item.size?'':'不'}符合要求</div>
-            </div>
-            <Divider/>
-            {item?.info.map((it: any) => (
-              <div key={it.key}>
-                {it?.size && (
-                  <Flex align='center'>
+      <ModalForm
+        form={form}
+        formRef={formRef}
+        modalProps={{ onCancel: onClose, destroyOnClose: true }}
+        title="续费"
+        width={1200}
+        open={open}
+        submitter={false}
+        onFinish={async () => {
+          onClose();
+          // return true;
+        }}
+      >
+        <Flex gap={10}>
+          {list?.map((item: any) => (
+            <ProCard
+              key={item.key}
+              title={item.name}
+              hoverable={item.size}
+              bordered
+              headerBordered
+              style={{
+                backgroundColor: item.size ? 'transparent' : '#ddd',
+                width: '25%',
+              }}
+            >
+              <div className={styles.desc}>{item.desc}</div>
+              <div className={styles.cardInfo}>
+                {item?.size && <h3>共{item.size}张</h3>}
+                <div>物联网卡{item.size ? '' : '不'}符合要求</div>
+              </div>
+              <Divider />
+              {item?.info.map((it: any) => (
+                <div key={it.key}>
+                  {it?.size && (
+                    <Flex align="center">
                       <div className={styles.ellipsis} title={`${it?.size}张${it.name}`}>
                         {it?.size}张{it?.name}
                       </div>
-                    
-                    <Button type="link" style={{flex:'0 0 60px'}} onClick={()=>{GotoFinal(item.key,it)}}>去续费</Button>
-                  </Flex>
-                )}
-              </div>
-            ))}
-          </ProCard>
-        ))}
-      </Flex>
-    </ModalForm>
-    {finalOpen&&<FinalRenew open={finalOpen} info={info} type={type} onClose={()=>setFinalOpen(false)}/>}
+
+                      <Button
+                        type="link"
+                        style={{ flex: '0 0 60px' }}
+                        onClick={() => {
+                          GotoFinal(item.key, it);
+                        }}
+                      >
+                        去续费
+                      </Button>
+                    </Flex>
+                  )}
+                </div>
+              ))}
+            </ProCard>
+          ))}
+        </Flex>
+      </ModalForm>
+      {finalOpen && (
+        <FinalRenew open={finalOpen} info={info} type={type} onClose={() => setFinalOpen(false)} />
+      )}
     </>
-    
   );
 };
 export default SelectType;

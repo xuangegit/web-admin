@@ -112,15 +112,13 @@ const columns: ProColumns<Item>[] = [
 ];
 
 export default () => {
-    
   const actionRef = useRef<ActionType>();
   return (
-    <PageContainer >
+    <PageContainer>
       <ProTable<Item>
         columns={columns}
         actionRef={actionRef}
         cardBordered
-        
         request={async (params, sort, filter) => {
           console.log(sort, filter);
           console.log('params', params);
@@ -140,7 +138,6 @@ export default () => {
             total: 1,
           };
         }}
-        
         rowKey="id"
         search={{
           labelWidth: 'auto',

@@ -3,8 +3,8 @@ import { useNavigate } from '@umijs/max';
 import { Alert, Button, Col, Flex, Row } from 'antd';
 import React, { useState } from 'react';
 import RenewalModal from './componenets/renewalModal';
-const { Divider } = StatisticCard;
 import { OperTypeNameEnum } from './interface.d';
+const { Divider } = StatisticCard;
 const RenewalService: React.FC = () => {
   const navigate = useNavigate();
   const spanConfig = {
@@ -76,8 +76,6 @@ const RenewalService: React.FC = () => {
                 </ProCard>
               </Col>
             ))}
-            
-            
           </Row>
         </>
       </ProCard>
@@ -113,8 +111,6 @@ const RenewalService: React.FC = () => {
                 </ProCard>
               </Col>
             ))}
-            
-            
           </Row>
         </>
       </ProCard>

@@ -1,6 +1,6 @@
 import type { TableColumnsType } from 'antd';
-import { Alert, Button, Flex, Modal, Table,Checkbox } from 'antd';
-import { FC, useEffect, useMemo, useState,  } from 'react';
+import { Alert, Button, Checkbox, Flex, Modal, Table } from 'antd';
+import { FC, useEffect, useMemo, useState } from 'react';
 interface autoProps {
   open: boolean;
   data?: any[];
@@ -30,7 +30,7 @@ const columns: TableColumnsType<itemType> = [
 const AutoRenewalModal: FC<autoProps> = (props) => {
   const { open, onClose, data } = props;
   const [tableData, setTableData] = useState<any[]>([]);
-  const [checked,setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
   const Message = useMemo(() => {
     if (data && data.length > 0)
       return '当前为按照查询条件勾选模式执行自动续费。若想选择全部物联网卡执行自动续费，请查询后直接点击“自动续费”即可。';
@@ -49,14 +49,14 @@ const AutoRenewalModal: FC<autoProps> = (props) => {
     }, 0);
     return total;
   }, [tableData]);
-  const onChange = (e:any)=>{
-    setChecked(e.target.checked)
-  }
-  const submitHandler =(isOpen?:boolean) =>{
-    console.log('isopen',isOpen);
-    console.log('data',data)
-    onClose()
-  }
+  const onChange = (e: any) => {
+    setChecked(e.target.checked);
+  };
+  const submitHandler = (isOpen?: boolean) => {
+    console.log('isopen', isOpen);
+    console.log('data', data);
+    onClose();
+  };
   return (
     <Modal
       title="自动续费设置"
@@ -66,22 +66,35 @@ const AutoRenewalModal: FC<autoProps> = (props) => {
       onCancel={onClose}
       footer={
         <Flex justify="end" gap={8}>
-          <Button type="primary" disabled={!totalCount} onClick={()=>{submitHandler(true)}}>
+          <Button
+            type="primary"
+            disabled={!totalCount}
+            onClick={() => {
+              submitHandler(true);
+            }}
+          >
             开启自动续费
           </Button>
-          <Button disabled={!totalCount}  onClick={()=>{submitHandler()}}>关闭自动续费</Button>
+          <Button
+            disabled={!totalCount}
+            onClick={() => {
+              submitHandler();
+            }}
+          >
+            关闭自动续费
+          </Button>
         </Flex>
       }
     >
       <Alert type="info" message={Message} showIcon></Alert>
       <Table columns={columns} dataSource={tableData} pagination={false} rowKey="id" />
-      <Alert message={`当前有效ICCID共${totalCount}个`} ></Alert>
-     
-      <Flex align='center' style={{marginTop:16}}>
-        <Checkbox checked={checked}  onChange={onChange}>
-         我已确认
+      <Alert message={`当前有效ICCID共${totalCount}个`}></Alert>
+
+      <Flex align="center" style={{ marginTop: 16 }}>
+        <Checkbox checked={checked} onChange={onChange}>
+          我已确认
         </Checkbox>
-         <Button type='link'>物联网卡自动续费规则</Button>
+        <Button type="link">物联网卡自动续费规则</Button>
       </Flex>
     </Modal>
   );

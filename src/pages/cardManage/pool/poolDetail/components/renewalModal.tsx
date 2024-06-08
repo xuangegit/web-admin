@@ -6,8 +6,8 @@ const RenewalModal = () => {
     <ModalForm
       title="续费"
       width={620}
-      layout='horizontal'
-    //   labelCol={{span:4}}
+      layout="horizontal"
+      //   labelCol={{span:4}}
       trigger={<Button type="primary">续费</Button>}
       modalProps={{
         destroyOnClose: true,
@@ -34,7 +34,7 @@ const RenewalModal = () => {
                 单价：<label>￥{price}/100M</label>
               </div>
               <div>
-                应付金额：<label>￥{price * count|0}</label>
+                应付金额：<label>￥{(price * count) | 0}</label>
               </div>
               <div>
                 账户余额：<label>￥20.20</label>
