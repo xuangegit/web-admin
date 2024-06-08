@@ -1,0 +1,23 @@
+.container{
+    margin:16px;
+    border: 1px solid #e5e5e5;
+}
+.itemWrapper{
+    padding: 8px 10px;
+}
+.shopImg{
+    width: 82px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    cursor: pointer;
+    &:hover {
+        box-shadow: 0px 0px 3px #1890ff;
+    }
+}
+.titleWrapper{
+    display: block;
+    .itemWrapper();
+    &:not(:last-of-type) {
+        border-bottom: 1px solid #e5e5e5;
+    }
+}

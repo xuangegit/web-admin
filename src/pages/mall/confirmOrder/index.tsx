@@ -11,8 +11,9 @@ import { Button, Flex, Form, Space, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styles from './index.less';
 import { addressOptions, tableData } from './mock';
-
+import { useNavigate } from '@umijs/max';
 const ConfirmOrder: React.FC = () => {
+  const navigate = useNavigate();
   const [showMore, setShowMore] = useState(true);
   const [addressList, setAddressList] = useState(addressOptions);
 
@@ -75,7 +76,7 @@ const ConfirmOrder: React.FC = () => {
         </ProCard>
         <ProCard
           title="送货清单"
-          extra={<Button type="link">返回购物车</Button>}
+          extra={<Button type="link" onClick={()=> navigate('/mall/shopping-car')}>返回购物车</Button>}
           bordered={false}
           style={{ marginTop: 12 }}
         >

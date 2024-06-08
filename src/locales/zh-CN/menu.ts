@@ -23,7 +23,7 @@ export default {
   'menu.mall.purchase': '在线购卡',
   'menu.mall.shopping-car': '购物车',
   'menu.mall.confirm-order': '确认订单',
-  'menu.mall.order': '订单管理',
+  'menu.mall.order': '订单列表',
   'menu.dashboard.analysis': '分析页',
   'menu.dashboard.monitor': '监控页',
   'menu.dashboard.workplace': '工作台',

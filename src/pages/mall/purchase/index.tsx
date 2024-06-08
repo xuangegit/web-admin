@@ -1,6 +1,7 @@
-import { InfoCircleOutlined } from '@ant-design/icons';
+import { InfoCircleOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Checkbox, Col, Form, Row, Space, Tooltip } from 'antd';
+import { Badge, Card, Checkbox, Col, Form, Row, Space, Tooltip } from 'antd';
+import { useNavigate } from '@umijs/max';
 import List from './components/List';
 import StandardFormRow from './components/StandardFormRow';
 import TagSelect from './components/TagSelect';
@@ -15,28 +16,7 @@ const spanConfig = {
 };
 
 const FormItem = Form.Item;
-const owners = [
-  {
-    id: 'wzj',
-    name: '我自己',
-  },
-  {
-    id: 'wjh',
-    name: '吴家豪',
-  },
-  {
-    id: 'zxx',
-    name: '周星星',
-  },
-  {
-    id: 'zly',
-    name: '赵丽颖',
-  },
-  {
-    id: 'ym',
-    name: '姚明',
-  },
-];
+
 const cardTypeOptions = [
   {
     value: 'normal',
@@ -59,16 +39,23 @@ const packageTypeOptions = [
 ];
 export default () => {
   const [form] = Form.useForm();
-  const reload = () => {};
-  const formItemLayout = {
-    wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 24 },
-      md: { span: 12 },
-    },
-  };
+  const navigate = useNavigate();
   return (
-    <PageContainer fixedHeader>
+    <PageContainer
+      fixedHeader
+      extra={
+        <div style={{ fontWeight: 500, cursor: 'pointer',padding:'8px 0' }} onClick={
+          () => {
+            navigate('/mall/shopping-car');
+          }
+        }>
+          <Badge size="small" count={3}>
+            <ShoppingCartOutlined style={{ fontSize: 16, marginRight: 6 }} />
+          </Badge>
+          购物车
+        </div>
+      }
+    >
       <Card bordered={false}>
         <Form
           layout="inline"
@@ -135,38 +122,6 @@ export default () => {
               只看自己的
             </a> */}
           </StandardFormRow>
-          {/* <StandardFormRow title="其它选项" grid last>
-            <Row gutter={16}>
-              <Col xl={8} lg={10} md={12} sm={24} xs={24}>
-                <FormItem {...formItemLayout} label="活跃用户" name="user">
-                  <Select
-                    placeholder="不限"
-                    style={{ maxWidth: 200, width: '100%' }}
-                    options={[
-                      {
-                        label: '李三',
-                        value: 'lisa',
-                      },
-                    ]}
-                  />
-                </FormItem>
-              </Col>
-              <Col xl={8} lg={10} md={12} sm={24} xs={24}>
-                <FormItem {...formItemLayout} label="好评度" name="rate">
-                  <Select
-                    placeholder="不限"
-                    style={{ maxWidth: 200, width: '100%' }}
-                    options={[
-                      {
-                        label: '优秀',
-                        value: 'good',
-                      },
-                    ]}
-                  />
-                </FormItem>
-              </Col>
-            </Row>
-          </StandardFormRow> */}
         </Form>
       </Card>
       <Row gutter={[12, 12]} style={{ marginTop: 10 }}>
