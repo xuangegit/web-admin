@@ -1,4 +1,11 @@
-import { PageContainer, ProList } from '@ant-design/pro-components';
+import {
+  PageContainer,
+  ProForm,
+  ProFormDateTimeRangePicker,
+  ProFormSelect,
+  ProFormText,
+  ProList,
+} from '@ant-design/pro-components';
 import { Card, Col, Flex, Row } from 'antd';
 import dayjs from 'dayjs';
 import cmccImg from '../shoppingCar/images/cmcc.png';
@@ -8,8 +15,34 @@ import { defaultData } from './mock';
 export default () => {
   return (
     <PageContainer>
-      <Card style={{minWidth:950}} >
-        <Row align={'middle'} wrap={false} className={styles.header} >
+      <Card style={{ minWidth: 950 }}>
+        <ProForm
+          layout="inline"
+          submitter={false}
+          style={{marginBottom:16}}
+          onValuesChange={(values: any) => {
+            console.log('valuse--change', values);
+          }}
+        >
+          <ProFormText placeholder={'订单号'} name="orderNum" />
+          <ProFormDateTimeRangePicker
+            name={'date'}
+            placeholder={['订单开始时间', '订单结束时间']}
+          />
+          <ProFormSelect
+            name={'status'}
+            placeholder={'订单状态'}
+            valueEnum={{
+              '0': '全部',
+              '1': '待支付',
+              '2': '待发货',
+              '3': '待收货',
+              '4': '已完成',
+              '5': '已取消',
+            }}
+          />
+        </ProForm>
+        <Row align={'middle'} wrap={false} className={styles.header}>
           <Col flex="0 0 248px">商品</Col>
           <Col flex="0 0 100px">套餐价格</Col>
           <Col flex="0 0 60px">总周期</Col>
@@ -25,6 +58,15 @@ export default () => {
           dataSource={defaultData}
           rowKey={'id'}
           ghost
+          pagination={{
+            current: 1,
+            showSizeChanger: true,
+            pageSize: 10,
+            total: 100,
+            onChange: (page, pageSize) => {
+              console.log('page', page, pageSize);
+            },
+          }}
           renderItem={(item) => {
             console.log('item', item);
             return (
@@ -64,7 +106,9 @@ export default () => {
                   </Col>
                   <Col flex="1 0 80px">￥3620</Col>
                   <Col flex="1 0 80px">已完成</Col>
-                  <Col flex={'1 0 80px'}><a>详情</a></Col>
+                  <Col flex={'1 0 80px'}>
+                    <a>详情</a>
+                  </Col>
                 </Row>
               </div>
             );

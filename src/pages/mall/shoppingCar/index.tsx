@@ -1,17 +1,19 @@
 import { PageContainer, ProTable } from '@ant-design/pro-components';
-import { Button, Card, Divider, Empty, Flex, Form, Image, InputNumber, Modal, Space } from 'antd';
+import { Button, Card, Divider, Empty, Flex, Form, Image, InputNumber, Modal, Space,message } from 'antd';
 import { throttle } from 'lodash';
 import React, { useEffect, useMemo, useState } from 'react';
+import {useNavigate} from '@umijs/max'
 import chinanetImg from './images/chinanet.png';
 import cmccImg from './images/cmcc.png';
 import styles from './index.less';
 import { data } from './mock';
 const ShoppingCar: React.FC = () => {
+  const navigate = useNavigate();
   const [modal, contextHolder] = Modal.useModal();
   const [selectRows, setSelectRows] = React.useState<any>([]);
   const [selectRowKeys, setSelectRowKeys] = useState<any[]>([]);
   const shopTotalCost = useMemo(() => {
-    return selectRows.reduce((pre, cur) => {
+    return selectRows.reduce((pre:number, cur:any) => {
       return pre + cur.price * cur.num;
     }, 0);
   }, [selectRows]);
@@ -83,6 +85,20 @@ const ShoppingCar: React.FC = () => {
             title: '商品名称',
             dataIndex: ['priceOffer', 'name'],
             key: 'name',
+            width: 200,
+            render: (text, record, index) => {
+              console.log('text', text);
+              return (
+                <Flex gap={16} align='center'>
+                  <Image
+                    width={80}
+                    className={styles.selectShopImg}
+                    src={record?.carrier === 'cmcc' ? cmccImg : chinanetImg}
+                  />
+                  <div>{text}</div>
+                </Flex>
+              );
+            },
           },
           {
             title: '价格',
@@ -115,6 +131,7 @@ const ShoppingCar: React.FC = () => {
               return (
                 <InputNumber
                   min={1}
+                  disabled={selectRowKeys.includes(record?.id)}
                   defaultValue={record?.num}
                   onChange={(value) => {
                     console.log('商品数量改变', value);
@@ -218,7 +235,13 @@ const ShoppingCar: React.FC = () => {
               <b>{shopTotalCost - discount}</b>
             </span>
           </div>
-          <Button type="primary" size="large" onClick={() => {}}>
+          <Button type="primary" size="large" onClick={() => {
+            if(selectRowKeys.length === 0) {
+              message.warning('请选择商品');
+            } else {
+              navigate('/mall/confirm-order')
+            }
+          }}>
             结算
           </Button>
         </div>
