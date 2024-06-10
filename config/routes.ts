@@ -157,6 +157,12 @@ export default [
         path: '/mall/order',
         component: './mall/order',
       },
+      {
+        name: 'choose',
+        icon: 'smile',
+        path: '/mall/choose',
+        component: '@/pages/mall/choose',
+      },
     ],
   },
   {
