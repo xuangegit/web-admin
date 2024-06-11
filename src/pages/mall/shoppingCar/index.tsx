@@ -182,7 +182,7 @@ const ShoppingCar: React.FC = () => {
         }}
       />
       <Card
-        style={{ width: '50%', minWidth: 400, margin: '0 auto', marginTop: 20 }}
+        style={{ minWidth: 400, margin: '0 auto', marginTop: 20 }}
         title={
           <Flex gap={10} align="center">
             <div>结算明细</div>

@@ -40,6 +40,7 @@ const ConfirmOrder: React.FC = () => {
               <CheckCard.Group>
                 {addressList.map((item) => (
                   <CheckCard
+                    size='small'
                     title={item.name}
                     description={item.address + ' ' + item.phone}
                     value={item.id}
