@@ -1,3 +1,5 @@
+import PrivacyPolicy from '@/components/PolicyModal';
+import AddressModal, { AddressEditModalProps } from '@/pages/account/address/components/addOrEdit';
 import { data } from '@/pages/mall/shoppingCar/mock';
 import {
   CheckCard,
@@ -7,17 +9,21 @@ import {
   ProFormItem,
   ProFormTextArea,
 } from '@ant-design/pro-components';
+import { useNavigate } from '@umijs/max';
 import { Button, Flex, Form, Space, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styles from './index.less';
 import { addressOptions, tableData } from './mock';
-import { useNavigate } from '@umijs/max';
 const ConfirmOrder: React.FC = () => {
   const navigate = useNavigate();
   const [showMore, setShowMore] = useState(true);
   const [addressList, setAddressList] = useState(addressOptions);
-
+  const [addressConfig, setAddressConfig] = useState<Omit<AddressEditModalProps, 'onClose'>>({
+    visible: false,
+    id: '',
+  });
   const [dataSource, setDataSource] = React.useState(tableData);
+  const [policyVisible, setPolicyVisible] = useState(false);
   useEffect(() => {
     let temp = {
       name: '商品名称1',
@@ -34,17 +40,40 @@ const ConfirmOrder: React.FC = () => {
   return (
     <PageContainer>
       <Form>
-        <ProCard title="收货地址" bordered={false} extra={<Button type="link">新增地址</Button>}>
+        <ProCard
+          title="收货地址"
+          bordered={false}
+          extra={
+            <Button
+              type="link"
+              onClick={() => {
+                setAddressConfig({ visible: true });
+              }}
+            >
+              新增地址
+            </Button>
+          }
+        >
           <Form.Item name="address" className={styles.normalItem}>
             <Space>
               <CheckCard.Group>
                 {addressList.map((item) => (
                   <CheckCard
-                    size='small'
+                    size="small"
                     title={item.name}
                     description={item.address + ' ' + item.phone}
                     value={item.id}
-                    extra={<Button type="link">修改</Button>}
+                    extra={
+                      <Button
+                        type="link"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setAddressConfig({ visible: true, id: item.id });
+                        }}
+                      >
+                        修改
+                      </Button>
+                    }
                     key={item.id}
                   />
                 ))}
@@ -77,7 +106,11 @@ const ConfirmOrder: React.FC = () => {
         </ProCard>
         <ProCard
           title="送货清单"
-          extra={<Button type="link" onClick={()=> navigate('/mall/shopping-car')}>返回购物车</Button>}
+          extra={
+            <Button type="link" onClick={() => navigate('/mall/shopping-car')}>
+              返回购物车
+            </Button>
+          }
           bordered={false}
           style={{ marginTop: 12 }}
         >
@@ -147,7 +180,10 @@ const ConfirmOrder: React.FC = () => {
             </CheckCard.Group>
           </ProFormItem>
           <ProFormCheckbox label="附加功能">
-            为购买卡片开启自动续费 <Button type="link">了解更多</Button>
+            为购买卡片开启自动续费{' '}
+            <Button type="link" onClick={() => setPolicyVisible(true)}>
+              了解更多
+            </Button>
           </ProFormCheckbox>
         </div>
         <ProCard ghost>
@@ -184,6 +220,20 @@ const ConfirmOrder: React.FC = () => {
           </div>
         </ProCard>
       </Form>
+      <AddressModal
+        {...addressConfig}
+        onClose={() => {
+          setAddressConfig({ visible: false });
+        }}
+      />
+      {policyVisible && (
+        <PrivacyPolicy
+          onClose={() => {
+            setPolicyVisible(false);
+          }}
+          visible={policyVisible}
+        />
+      )}
     </PageContainer>
   );
 };

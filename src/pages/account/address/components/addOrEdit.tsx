@@ -8,13 +8,20 @@ import {
   ProFormTextArea,
 } from '@ant-design/pro-components';
 import React from 'react';
-const AddOrEdit: React.FC = (props: any) => {
+export type AddressEditModalProps = {
+  visible: boolean;
+  id?: string | number;
+  onClose: () => void;
+  callback?: () => void;
+};
+const AddOrEdit: React.FC<AddressEditModalProps> = (props: any) => {
   return (
     <ModalForm
       width={600}
       open={props?.visible}
       title={props?.id ? '编辑收货地址' : '新增收货地址'}
       modalProps={{
+        destroyOnClose: true,
         onCancel: () => {
           props.onClose();
         },
