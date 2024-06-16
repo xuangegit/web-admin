@@ -13,7 +13,7 @@ import { useNavigate } from '@umijs/max';
 import { Button, Flex, Form, Space, Table } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styles from './index.less';
-import { addressOptions, tableData } from './mock';
+import { addressOptions, payList, tableData } from './mock';
 const ConfirmOrder: React.FC = () => {
   const navigate = useNavigate();
   const [showMore, setShowMore] = useState(true);
@@ -104,6 +104,19 @@ const ConfirmOrder: React.FC = () => {
             </Space>
           </Form.Item>
         </ProCard>
+        <Form.Item label="支付方式" name={'payType'} style={{ margin: 16 }}>
+          <CheckCard.Group>
+            {payList.map((item: any) => (
+              <CheckCard
+                className={styles.checkedCard}
+                size="small"
+                key={item.value}
+                title={item.name}
+                value={item.value}
+              />
+            ))}
+          </CheckCard.Group>
+        </Form.Item>
         <ProCard
           title="送货清单"
           extra={

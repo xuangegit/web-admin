@@ -4,9 +4,10 @@ import React, { useLayoutEffect, useRef, useState } from 'react';
 import BaseView from './components/base';
 import BindingView from './components/binding';
 import NotificationView from './components/notification';
+import Qualification from './components/Qualification';
 import SecurityView from './components/security';
 import useStyles from './style.style';
-type SettingsStateKeys = 'base' | 'security' | 'binding' | 'notification';
+type SettingsStateKeys = 'base' | 'security' | 'binding' | 'notification' | 'qualification';
 type SettingsState = {
   mode: 'inline' | 'horizontal';
   selectKey: SettingsStateKeys;
@@ -18,6 +19,7 @@ const Settings: React.FC = () => {
     security: '安全设置',
     binding: '账号绑定',
     notification: '新消息通知',
+    qualification: '资质信息',
   };
   const [initConfig, setInitConfig] = useState<SettingsState>({
     mode: 'inline',
@@ -37,10 +39,11 @@ const Settings: React.FC = () => {
       if (window.innerWidth < 768 && offsetWidth > 400) {
         mode = 'horizontal';
       }
-      setInitConfig({
+      setInitConfig(({ selectKey }: any) => ({
         ...initConfig,
+        selectKey,
         mode: mode as SettingsState['mode'],
-      });
+      }));
     });
   };
   useLayoutEffect(() => {
@@ -66,6 +69,8 @@ const Settings: React.FC = () => {
         return <BindingView />;
       case 'notification':
         return <NotificationView />;
+      case 'qualification':
+        return <Qualification />;
       default:
         return null;
     }

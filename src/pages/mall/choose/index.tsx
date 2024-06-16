@@ -6,7 +6,8 @@ import {
   ProFormDigit,
   ProFormSelect,
 } from '@ant-design/pro-components';
-import { Button, Card, Col, Divider, Flex, Row,Space } from 'antd';
+import { useNavigate } from '@umijs/max';
+import { Button, Card, Col, Divider, Flex, Row, Space } from 'antd';
 import React, { useState } from 'react';
 import ReactImageZoom from 'react-image-zoom';
 import styles from './index.less';
@@ -137,16 +138,13 @@ const Commodity: React.FC = () => {
       value: 5,
     },
   ];
+  const navigate = useNavigate();
   const [currentSrc, setCurrentSrc] = useState(srcList[0]);
   const properties = {
     zoomStyle: 'border-radius:6px;box-shadow:0 0 1px #ddd;opacity:1;z-index:10',
     zoomLensStyle: 'background-color:#ccc;opacity:0.1',
     width: 350,
-    // height: 300,
-    // zoomWidth: 500,
-    // zoomHeight: 500,
     offset: { vertical: 0, horizontal: 10 },
-    // zoomPosition:'original',
     src: `/carsImg/${currentSrc}`,
   };
   const ZoomImg = React.memo(({ src, ...rest }: any) => {
@@ -262,8 +260,12 @@ const Commodity: React.FC = () => {
                 render: () => {
                   return (
                     <Space size={'large'}>
-                      <Button type="primary">加入购物车</Button>
-                      <Button type="primary">立即购买</Button>
+                      <Button type="primary" onClick={() => navigate('/mall/shopping-car')}>
+                        加入购物车
+                      </Button>
+                      <Button type="primary" onClick={() => navigate('/mall/confirm-order')}>
+                        立即购买
+                      </Button>
                     </Space>
                   );
                 },

@@ -26,3 +26,18 @@ export const tableData = [
     totalMoney: 500,
   },
 ];
+
+export const payList = [
+  {
+    name: '支付宝',
+    value: 'alipay',
+  },
+  {
+    name: '微信',
+    value: 'wechat',
+  },
+  {
+    name: '对公账号',
+    value: 'bank',
+  },
+];
