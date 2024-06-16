@@ -27,6 +27,7 @@ export default {
   'menu.list.card-list': 'Card List',
   'menu.card': 'cardManage',
   'menu.card.card-lst': 'Card List',
+  'menu.card.card-detail': 'Card Detail',
   'menu.card.pool': 'Pool Manage',
   'menu.card.pool.pool': 'Pool',
   'menu.card.pool.detail': 'Pool Detail',

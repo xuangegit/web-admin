@@ -1,13 +1,7 @@
 import { ProColumnType } from '@ant-design/pro-components';
 import { CardListItem } from '../data';
-type getColumnsType = {
-  setCurrentRow: (p?: CardListItem) => any;
-  setShowDetail: (p: boolean) => any;
-};
-export const getColumns = ({
-  setCurrentRow,
-  setShowDetail,
-}: getColumnsType): ProColumnType<CardListItem>[] => {
+
+export const getColumns = (isDetail?: boolean): ProColumnType<CardListItem>[] => {
   const columns: ProColumnType<CardListItem>[] = [
     {
       title: 'ICCID',
@@ -15,12 +9,13 @@ export const getColumns = ({
       key: 'iccid',
       // hideInSearch: true,
       width: 160,
-      render: (dom, entity) => {
-        return (
+      render: (_, record) => {
+        return isDetail ? (
+          <>53473467036030</>
+        ) : (
           <a
             onClick={() => {
-              setCurrentRow(entity);
-              setShowDetail(true);
+              window.location.href = `/card/detail?id=${record?.id}&iccid=${record?.iccid}`;
             }}
           >
             1231231

@@ -213,12 +213,7 @@ const CardPage: React.FC = () => {
             params={{
               id: currentRow?.name,
             }}
-            columns={
-              getColumns({
-                setCurrentRow,
-                setShowDetail,
-              }) as ProDescriptionsItemProps<CardListItem>[]
-            }
+            columns={getColumns() as ProDescriptionsItemProps<CardListItem>[]}
           />
         )}
       </Drawer>

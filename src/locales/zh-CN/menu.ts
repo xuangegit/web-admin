@@ -10,6 +10,7 @@ export default {
   'menu.dashboard': '仪表盘',
   'menu.card': '卡片管理',
   'menu.card.card-lst': '卡片列表',
+  'menu.card.card-detail': '卡片详情',
   'menu.card.pool': '流量池',
   'menu.card.pool.pool': '流量池',
   'menu.card.pool.detail': '流量池详情',

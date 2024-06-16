@@ -1,4 +1,5 @@
 export type CardListItem = {
+  id: number | string;
   iccid?: number | string;
   phone?: string;
   imsi?: string;
