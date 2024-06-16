@@ -68,6 +68,7 @@ export default [
         name: 'card-detail',
         icon: 'smile',
         path: '/card/detail',
+        hideInMenu: true,
         component: './cardManage/card/detail',
       },
       {

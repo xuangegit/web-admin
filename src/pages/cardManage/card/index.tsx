@@ -160,7 +160,7 @@ const CardPage: React.FC = () => {
         ]}
         params={{ type: activeKey }}
         request={rule}
-        columns={getColumns({ setCurrentRow, setShowDetail })}
+        columns={getColumns()}
         rowSelection={{
           onChange: (_, selectedRows) => {
             setSelectedRows(selectedRows as CardListItem[]);

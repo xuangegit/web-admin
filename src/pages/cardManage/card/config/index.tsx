@@ -15,7 +15,7 @@ export const getColumns = (isDetail?: boolean): ProColumnType<CardListItem>[] =>
         ) : (
           <a
             onClick={() => {
-              window.location.href = `/card/detail?id=${record?.id}&iccid=${record?.iccid}`;
+              window.location.href = `/card/detail`;
             }}
           >
             1231231
