@@ -5,8 +5,10 @@ import { Card, Col, Row, Table } from 'antd';
 import React, { Suspense } from 'react';
 import { getColumns } from '../config';
 import { CardListItem } from '../data';
+import CardUsedStatics from './components/cardUsedStatics';
 import CarrierRestriction from './components/carrierRestriction';
 import PackagesAndData from './components/PackagesAndData';
+import SmsList from './components/smsList';
 import { packageColomns } from './config';
 import { getFakeChartData } from './mock';
 const CardDetail: React.FC = () => {
@@ -61,6 +63,8 @@ const CardDetail: React.FC = () => {
           </Card>
         </Col>
       </Row>
+      <CardUsedStatics />
+      <SmsList />
     </PageContainer>
   );
 };

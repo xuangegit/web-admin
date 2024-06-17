@@ -20,3 +20,47 @@ export const packageColomns = [
     dataIndex: 'packagePeriod',
   },
 ];
+export const smsSendColomns = [
+  {
+    title: '发送时间',
+    key: 'sendTime',
+    dataIndex: 'sendTime',
+  },
+  {
+    title: '发送地',
+    key: 'destination',
+    dataIndex: 'destination',
+  },
+  {
+    title: '短信内容',
+    key: 'smsContent',
+    dataIndex: 'smsContent',
+  },
+  {
+    title: '发送状态',
+    key: 'status',
+    dataIndex: 'status',
+  },
+];
+export const smsReceiveColomns = [
+  {
+    title: '发送时间',
+    key: 'createTime',
+    dataIndex: 'createTime',
+  },
+  {
+    title: '起发地',
+    key: 'source',
+    dataIndex: 'source',
+  },
+  {
+    title: '短信内容',
+    key: 'smsContent',
+    dataIndex: 'smsContent',
+  },
+  {
+    title: '发送状态',
+    key: 'status',
+    dataIndex: 'status',
+  },
+];
