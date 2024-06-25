@@ -30,6 +30,12 @@ const PieStatics:React.FC = ()=>{
             rowPadding: 5,
           },
         },
+        tooltip:{
+            title:(d:any)=>{
+                console.log('d',d)
+                return d.type
+            }
+        }
         // annotations: [
         //   {
         //     type: 'text',
