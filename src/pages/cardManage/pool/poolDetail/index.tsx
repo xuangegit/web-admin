@@ -7,6 +7,7 @@ import AutoRenewalModal from './components/autoRenewalModal';
 import TableList from './components/list';
 import OffNetSetting from './components/offNetSetting';
 import RenewalModal from './components/renewalModal';
+import PieStatics from './components/pieStatics';
 const PoolDetail: React.FC = () => {
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ const PoolDetail: React.FC = () => {
             <OffNetSetting />
           </Space>
         </Flex>
+        <PieStatics/>
       </Card>
       <TableList />
     </PageContainer>
