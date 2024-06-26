@@ -14,7 +14,7 @@ export default [
   {
     path: '/home',
     name: 'home',
-    icon: 'home',
+    icon: 'icon-home',
     component: './home',
   },
   {
@@ -51,7 +51,7 @@ export default [
   },
   {
     path: '/card',
-    icon: 'table',
+    icon: 'icon-wulianwangka',
     name: 'card',
     routes: [
       {
@@ -108,7 +108,7 @@ export default [
   },
   {
     path: '/renewal',
-    icon: 'smile',
+    icon: 'icon-xufei',
     name: 'renewal',
     routes: [
       {
@@ -139,7 +139,7 @@ export default [
   {
     path: '/mall',
     name: 'mall',
-    icon: 'shop',
+    icon: 'icon-mall',
     routes: [
       {
         path: '/mall',
@@ -372,7 +372,7 @@ export default [
   },
   {
     name: 'account',
-    icon: 'user',
+    icon: 'icon-custom-user',
     path: '/account',
     routes: [
       {

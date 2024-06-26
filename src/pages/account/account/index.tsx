@@ -2,6 +2,7 @@ import { GridContent } from '@ant-design/pro-components';
 import { Menu } from 'antd';
 import React, { useLayoutEffect, useRef, useState } from 'react';
 import Balance from './components/balance';
+import InVoice from './components/InVoice';
 
 import useStyles from './style.style';
 type SettingsStateKeys = 'balance' | 'invoice';
@@ -57,7 +58,7 @@ const Settings: React.FC = () => {
       case 'balance':
         return <Balance />;
       case 'invoice':
-        return <Balance />;
+        return <InVoice />;
       default:
         return null;
     }

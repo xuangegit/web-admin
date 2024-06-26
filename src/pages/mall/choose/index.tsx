@@ -202,9 +202,10 @@ const Commodity: React.FC = () => {
             }
             ghost
           >
-            <Row gutter={[12, 8]}>
+           <div>
+           <Row gutter={[12, 8]} wrap>
               <Col span={12}>
-                <Card styles={cardStyles}>
+                <Card styles={cardStyles} className={styles.card}>
                   <div>材质</div>
                   <CheckCard.Group size="small">
                     {materialOptions.map((item: any) => (
@@ -214,7 +215,7 @@ const Commodity: React.FC = () => {
                 </Card>
               </Col>
               <Col span={12}>
-                <Card styles={cardStyles}>
+                <Card styles={cardStyles} className={styles.card}>
                   <div>规格</div>
                   <CheckCard.Group size="small">
                     {sizeOptions.map((item: any) => (
@@ -224,7 +225,7 @@ const Commodity: React.FC = () => {
                 </Card>
               </Col>
               <Col span={12}>
-                <Card styles={cardStyles}>
+                <Card styles={cardStyles} className={styles.card}>
                   <div>网络模式</div>
                   <CheckCard.Group size="small">
                     {netOptions.map((item: any) => (
@@ -234,7 +235,17 @@ const Commodity: React.FC = () => {
                 </Card>
               </Col>
               <Col span={12}>
-                <Card styles={cardStyles}>
+                <Card styles={cardStyles} className={styles.card}>
+                  <div>套餐分类</div>
+                  <CheckCard.Group size="small">
+                    {netOptions.map((item: any) => (
+                      <CheckCard ghost {...item} key={item.value} className={styles.checkedCard} />
+                    ))}
+                  </CheckCard.Group>
+                </Card>
+              </Col>
+              <Col span={12}>
+                <Card styles={cardStyles} className={styles.card}>
                   <div>卡片功能</div>
                   <CheckCard.Group size="small">
                     {functionOptions.map((item: any) => (
@@ -244,7 +255,7 @@ const Commodity: React.FC = () => {
                 </Card>
               </Col>
               <Col span={12}>
-                <Card styles={cardStyles}>
+                <Card styles={cardStyles} className={styles.card}>
                   <div>网络增值服务</div>
                   <CheckCard.Group size="small">
                     {netAddServiceOptions.map((item: any) => (
@@ -254,6 +265,7 @@ const Commodity: React.FC = () => {
                 </Card>
               </Col>
             </Row>
+           </div>
             <Divider />
             <ProForm
               submitter={{
