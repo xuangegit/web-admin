@@ -25,6 +25,7 @@ export default {
   'menu.mall.shopping-car': '购物车',
   'menu.mall.confirm-order': '确认订单',
   'menu.mall.order': '订单列表',
+  'menu.mall.order-detail': '订单详情',
   'menu.mall.choose': '选择商品',
   'menu.dashboard.analysis': '分析页',
   'menu.dashboard.monitor': '监控页',

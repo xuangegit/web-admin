@@ -171,6 +171,14 @@ export default [
         component: './mall/order',
       },
       {
+        name: 'order-detail',
+        icon: 'smile',
+        path: '/mall/order/detail',
+        hideInMenu: true,
+        parenetKeys: ['/mall/order'],
+        component: './mall/order/orderDetail',
+      },
+      {
         name: 'choose',
         icon: 'smile',
         path: '/mall/choose',

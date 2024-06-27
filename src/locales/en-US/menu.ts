@@ -42,6 +42,7 @@ export default {
   'menu.mall.shopping-car': 'Shopping Car',
   'menu.mall.confirm-order': 'Confirm Order',
   'menu.mall.order': 'Order List',
+  'menu.mall.order-detail': 'Order Detail',
   'menu.mall.choose': 'Choose Goods',
   'menu.list.search-list': 'Search List',
   'menu.list.search-list.articles': 'Search List(articles)',
