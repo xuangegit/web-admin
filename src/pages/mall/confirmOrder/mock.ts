@@ -29,6 +29,10 @@ export const tableData = [
 
 export const payList = [
   {
+    name: '余额',
+    value: 'balance',
+  },
+  {
     name: '支付宝',
     value: 'alipay',
   },
@@ -36,6 +40,7 @@ export const payList = [
     name: '微信',
     value: 'wechat',
   },
+
   {
     name: '对公账号',
     value: 'bank',

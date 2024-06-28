@@ -1,4 +1,4 @@
-import { Modal } from 'antd';
+import { Button, Flex, Modal } from 'antd';
 import { FC, useEffect, useState } from 'react';
 
 type PrivacyPolicyProps = {
@@ -85,9 +85,17 @@ const PrivacyPolicy: FC<PrivacyPolicyProps> = ({ visible, onClose }) => {
           seamless
         ></iframe>
 
-        <label>
+        {/* <label>
           <input type="checkbox" disabled={!isAgreeEnabled} /> 我已阅读并同意隐私协议
-        </label>
+        </label> */}
+        <div style={{ textAlign: 'right' }}>
+          <Flex gap={10} vertical>
+            <div>我已充分阅读、理解并接受《TLINK物联网卡入网服务协议》的全部内容</div>
+            <div>
+              <Button type="primary">接受</Button>
+            </div>
+          </Flex>
+        </div>
       </div>
     </Modal>
   );

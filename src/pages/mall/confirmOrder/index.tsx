@@ -193,10 +193,7 @@ const ConfirmOrder: React.FC = () => {
             </CheckCard.Group>
           </ProFormItem>
           <ProFormCheckbox label="附加功能">
-            为购买卡片开启自动续费{' '}
-            <Button type="link" onClick={() => setPolicyVisible(true)}>
-              了解更多
-            </Button>
+            为购买卡片开启自动续费 <Button type="link">了解更多</Button>
           </ProFormCheckbox>
         </div>
         <ProCard ghost>
@@ -225,11 +222,26 @@ const ConfirmOrder: React.FC = () => {
               </div>
             </Flex>
           </div>
+
           <div style={{ textAlign: 'right', marginTop: 12 }}>
-            {' '}
-            <Button size="large" type="primary">
-              提交订单
-            </Button>
+            <ProFormCheckbox name={'agreement'}>
+              已阅读并同意
+              <Button type="link" onClick={() => setPolicyVisible(true)}>
+                《物联网卡入网使用协议》
+              </Button>
+            </ProFormCheckbox>
+            <Form.Item dependencies={['agreement']}>
+              {({ getFieldValue }) => {
+                const agreement = getFieldValue('agreement');
+                return (
+                  <>
+                    <Button type="primary" disabled={!agreement}>
+                      提交订单
+                    </Button>
+                  </>
+                );
+              }}
+            </Form.Item>
           </div>
         </ProCard>
       </Form>

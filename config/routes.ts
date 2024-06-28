@@ -68,6 +68,7 @@ export default [
         name: 'card-detail',
         icon: 'smile',
         path: '/card/detail',
+        parentKeys: ['/card/list'],
         hideInMenu: true,
         component: './cardManage/card/detail',
       },
