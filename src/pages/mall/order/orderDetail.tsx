@@ -15,7 +15,7 @@ const OrderDetail: React.FC = () => {
         },
         consigneeInfo:{
             name:'张俊',
-            address:'上海上海上海市松江区施园路299弄12号楼804 15711666132',
+            address:'上海上海上海市松江区施园路299弄12号楼804室',
             phone:'15711666132'
         },
         needDeliveryNote:false,
@@ -31,6 +31,15 @@ const OrderDetail: React.FC = () => {
         payAmount:100,
        
     })
+    const columns = [
+        {titel:'商品详情',dataIndex:'productInfo',key:'productInfo'},
+        {titel:'套餐价格',dataIndex:'productNum',key:'productNum'},
+        {titel:'总周期',dataIndex:'productPrice',key:'productPrice'},
+        {titel:'沉默期',dataIndex:'productTotalPrice',key:'productTotalPrice'},
+        {titel:'单张卡费',dataIndex:'productDiscount',key:'productDiscount'},
+        {titel:'卡片数量',dataIndex:'productSubtotal',key:'count'},
+        {titel:'小计',dataIndex:'productSubtotal',key:'sumary'},
+    ]
     return (<PageContainer >
                <div className={styles.orderDetailContainer}>
                <Steps>
@@ -57,6 +66,12 @@ const OrderDetail: React.FC = () => {
                     </div>
                     <Divider/>
                     <div className={styles.orderItem}><label> 送货单：</label>{data.needDeliveryNote?'需要':'不需要'}</div>
+                    <Divider/>
+                    <div className={styles.orderItem}>
+                        <label> 发货清单：</label>
+                        <Table columns={columns}/>
+                    </div> 
+                    <div className={styles.orderItem}><label> 备注：</label>{data.remark}</div> 
                 </div>
                </div>
     </PageContainer>)

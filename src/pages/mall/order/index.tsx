@@ -107,7 +107,7 @@ export default () => {
                   <Col flex="1 0 80px">￥3620</Col>
                   <Col flex="1 0 80px">已完成</Col>
                   <Col flex={'1 0 80px'}>
-                    <a>详情</a>
+                    <a href='/mall/order/detail'>详情</a>
                   </Col>
                 </Row>
               </div>
