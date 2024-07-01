@@ -14,6 +14,7 @@ import ProportionSales from './components/ProportionSales';
 import type { TimeType } from './components/SalesCard';
 import SalesCard from './components/SalesCard';
 import TopSearch from './components/TopSearch';
+import FlowPoolStatistics from './components/FlowPoolStatistics'
 import type { AnalysisData } from './data.d';
 import { fakeChartData } from './service';
 import useStyles from './style.style';
@@ -142,12 +143,10 @@ const Analysis: FC<AnalysisProps> = () => {
         </Suspense>
 
         <Suspense fallback={null}>
-          <OfflineData
-            activeKey={activeKey}
+          <FlowPoolStatistics
+             salesPieData={salesPieData || []}
             loading={loading}
-            offlineData={data?.offlineData || []}
-            offlineChartData={data?.offlineChartData || []}
-            handleTabChange={handleTabChange}
+           
           />
         </Suspense>
       </>
